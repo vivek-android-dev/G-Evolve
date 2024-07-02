@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".HomepageActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/homepageView"
+        android:layout_width="match_parent"
+        android:layout_height="730dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/homepage_tab"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homepageView"
+        app:tabBackground="@color/transparent"
+        app:tabGravity="center"
+        app:tabIconTint="@color/green"
+        app:tabIndicator="@color/green"
+        app:tabSelectedTextColor="@color/green"
+        app:tabTextColor="@color/black">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/home"
+            android:text="Home"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="783dp" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/location_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/location"
+            android:text="Location" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/recycler_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/recycle_icon"
+            android:text="Recycle"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="806dp" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/edu_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/book_icon"
+            android:text="Edu"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="806dp" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/settings_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/settings_icon"
+            android:text="Settings"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="806dp" />
+    </com.google.android.material.tabs.TabLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

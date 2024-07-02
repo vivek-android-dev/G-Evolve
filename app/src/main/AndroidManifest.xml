@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/gevolvelogo"
+        android:label="@string/app_name"
+        android:roundIcon="@color/white"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GEvolve"
+        tools:targetApi="31">
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBDRoSPODqIx8_J4q5PLCkaXbFgBsAQHME" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".AboutEwaste5Activity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutEwaste4Activity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutEwaste3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".PendingBookingsCellActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecyclerDetailsCellActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ToprecyclersCellActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryRejectedrecyclerviewCellActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryAcceptedrecyclerviewCellActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryPendingRecyclerviewCellActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocationRecyclerviewCellActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddRecyclerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddEducationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ContactUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TermsOfServicesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrivacyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutEwasteRecyclingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutEwasteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutAppActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TelevisionRecyclingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccessoriesRecyclingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaptopRecyclingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SmartphoneRecyclingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomepageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecycleCenterFragment"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
