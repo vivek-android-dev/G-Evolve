@@ -1,6 +1,11 @@
 package com.example.g_evolve;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.g_evolve.api.RetroClient.BASE_URL;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,59 +15,61 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SettingsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.g_evolve.api.RetroClient;
+import com.example.g_evolve.responses.GetProfileResponse;
+import com.google.android.material.imageview.ShapeableImageView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class SettingsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public SettingsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
-        SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.settings_fragment, container, false);
+
+
+
+        // Inflate the layout for this fragment
+        SharedPreferences sf = requireActivity().getSharedPreferences("usersf",MODE_PRIVATE);
+        String userid = sf.getString("userid",null);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ShapeableImageView img = view.findViewById(R.id.profileImage);
+
+        if(userid != null){
+            Call<GetProfileResponse> res = RetroClient.makeApi().profile(userid);
+            res.enqueue(new Callback<GetProfileResponse>() {
+                @Override
+                public void onResponse(Call<GetProfileResponse> call, Response<GetProfileResponse> response) {
+                    if(response.isSuccessful()){
+                        if(response.body().getStatus() == 200){
+                            Glide.with(requireContext())
+                                    .load(BASE_URL+response.body().getData().getImage())
+                                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(200)))
+                                    .placeholder(R.drawable.circle)
+                                    .into(img);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetProfileResponse> call, Throwable t) {
+                    Toast.makeText(requireContext(), "Internal error"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         ImageButton button = view.findViewById(R.id.imageButton4);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
