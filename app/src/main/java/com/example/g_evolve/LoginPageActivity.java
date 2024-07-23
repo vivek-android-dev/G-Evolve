@@ -50,8 +50,12 @@ public class LoginPageActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
+                Intent intent = new Intent(LoginPageActivity.this, HomepageActivity.class);
+                startActivity(intent);
                 GetText();
                 if(validation())
                 {
@@ -69,7 +73,7 @@ public class LoginPageActivity extends AppCompatActivity {
                                             SharedPreferences sf = getSharedPreferences("adminsf",MODE_PRIVATE);
                                             sf.edit().putString("userid",response.body().getData().getUser_id()).apply();
 
-                                            Toast.makeText(LoginPageActivity.this, "Admin Login successfull", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(LoginPageActivity.this, "Admin Login successfull ", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(LoginPageActivity.this, AdminDashboardActivity.class);
                                             startActivity(intent);
                                         }

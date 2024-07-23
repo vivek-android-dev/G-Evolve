@@ -2,7 +2,6 @@ package com.example.g_evolve;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
