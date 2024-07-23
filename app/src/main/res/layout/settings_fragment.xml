@@ -38,13 +38,12 @@
         android:id="@+id/profileImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:background="@drawable/circle"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/circle"
-        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@drawable/circle" />
 
     <TextView
         android:id="@+id/textView26"

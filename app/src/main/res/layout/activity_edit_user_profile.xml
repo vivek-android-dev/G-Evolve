@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileEditActivity">
+    tools:context=".EditUserProfileActivity">
 
     <View
         android:id="@+id/view6"
@@ -48,7 +48,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="130dp"
-        android:background="@drawable/gevolvelogo"
+        android:background="@drawable/circle"
         android:scaleType="centerCrop"
         app:shapeAppearanceOverlay="@style/RoundedCornersImageView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Profile Picture"
+        android:text="Change Profile"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -91,8 +91,6 @@
         android:ems="10"
         android:paddingLeft="10dp"
         android:inputType="text"
-        android:clickable="false"
-        android:focusable="false"
         android:background="@drawable/curved_stroke"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -118,8 +116,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:clickable="false"
-        android:focusable="false"
         android:paddingLeft="10dp"
         android:background="@drawable/curved_stroke"
         android:inputType="textEmailAddress"
@@ -129,11 +125,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
     <Button
-        android:id="@+id/buttonedit"
+        android:id="@+id/btnUpdate"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
-        android:text="Edit"
+        android:text="Update"
         android:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

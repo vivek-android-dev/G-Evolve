@@ -75,7 +75,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Start the activity that hosts the RecycleCenterFragment
-                Intent intent = new Intent(getActivity(), ProfileEditActivity.class);
+                Intent intent = new Intent(getActivity(), UserProfileActivity.class);
                 startActivity(intent);
             }
         });
