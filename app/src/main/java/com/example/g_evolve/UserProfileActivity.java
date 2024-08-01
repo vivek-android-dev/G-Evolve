@@ -2,8 +2,10 @@ package com.example.g_evolve;
 
 import static com.example.g_evolve.api.RetroClient.BASE_URL;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -13,26 +15,35 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.g_evolve.api.RetroClient;
-import com.example.g_evolve.databinding.ProfileEditBinding;
+import com.example.g_evolve.databinding.ActivityUserProfileBinding;
 import com.example.g_evolve.responses.GetProfileResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileEditActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity {
 
-    ProfileEditBinding binding;
+    ActivityUserProfileBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        binding = ProfileEditBinding.inflate(getLayoutInflater());
+
+        binding = ActivityUserProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         SharedPreferences sf = getSharedPreferences("usersf",MODE_PRIVATE);
         String userid = sf.getString("userid",null);
+
+        binding.buttonedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),EditUserProfileActivity.class));
+            }
+
+        });
 
         if(userid != null){
             Call<GetProfileResponse> res = RetroClient.makeApi().profile(userid);
@@ -54,7 +65,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<GetProfileResponse> call, Throwable t) {
-                    Toast.makeText(ProfileEditActivity.this, "Internal error"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserProfileActivity.this, "Internal error"+t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

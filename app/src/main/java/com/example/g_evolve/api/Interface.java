@@ -24,6 +24,12 @@ public interface Interface {
     @GET("/api/showProfile/{user_id}")
     Call<GetProfileResponse> profile(@Path("user_id") String user_id);
 
+    @FormUrlEncoded
+    @POST("/api/login")
+    Call<LoginResponse> editProfile(@Field("user_id") String user_id, @Field("name") String name ,@Field("email") String email);
+
+
+
 
 
 }
