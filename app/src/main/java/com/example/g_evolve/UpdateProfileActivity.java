@@ -26,8 +26,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         imageButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Define your back button behavior here
-                finish(); // Close the current activity
+                finish();
             }
         });
     }

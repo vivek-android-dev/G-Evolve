@@ -82,7 +82,7 @@ public class LoginPageActivity extends AppCompatActivity {
                                             sf.edit().putString("userid",response.body().getData().getUser_id()).apply();
 
                                             Toast.makeText(LoginPageActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(LoginPageActivity.this, HomepageActivity.class);
+                                            Intent intent = new Intent(LoginPageActivity.this, UserDashboardActivity.class);
                                             startActivity(intent);
                                         }
                                         if (response.body().getStatus().equals("400")) {

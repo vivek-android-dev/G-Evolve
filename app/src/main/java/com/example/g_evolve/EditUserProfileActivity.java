@@ -6,10 +6,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,11 +27,16 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.g_evolve.api.RetroClient;
 import com.example.g_evolve.databinding.ActivityEditUserProfileBinding;
 import com.example.g_evolve.databinding.ActivityUserProfileBinding;
+import com.example.g_evolve.responses.EditProfileResponse;
 import com.example.g_evolve.responses.GetProfileResponse;
 import com.example.g_evolve.responses.LoginResponse;
 
+import java.io.File;
 import java.io.IOException;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,6 +46,9 @@ public class EditUserProfileActivity extends AppCompatActivity {
     ActivityEditUserProfileBinding binding;
     private static final int REQUEST_CODE_SELECT_IMAGE = 1;
     private static final int REQUEST_CODE_PERMISSION = 2;
+    String userid;
+    RequestBody name, email, user_id;
+    MultipartBody.Part image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +58,8 @@ public class EditUserProfileActivity extends AppCompatActivity {
         binding = ActivityEditUserProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        SharedPreferences sf = getSharedPreferences("usersf",MODE_PRIVATE);
-        String userid = sf.getString("userid",null);
+        SharedPreferences sf = getSharedPreferences("usersf", MODE_PRIVATE);
+        userid = sf.getString("userid", null);
 
         binding.profileImage.setOnClickListener(v -> {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -61,18 +71,49 @@ public class EditUserProfileActivity extends AppCompatActivity {
                 openImageSelector();
             }
         });
-        
-        GetText();
 
-        if(userid != null){
+        binding.btnUpdate.setOnClickListener(v -> {
+            updateProfile();
+        });
 
-//            Call<LoginResponse> res = RetroClient.makeApi().editProfile(userid,);
-
-        }
 
     }
 
-    private void GetText() {
+    private void updateProfile() {
+        GetData();
+
+        if (userid != null) {
+
+            Call<EditProfileResponse> res = RetroClient.makeApi().editProfile(user_id, image, name, email);
+            res.enqueue(new Callback<EditProfileResponse>() {
+                @Override
+                public void onResponse(Call<EditProfileResponse> call, Response<EditProfileResponse> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getStatus().equals("200")) {
+                            Toast.makeText(EditUserProfileActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("Response Image", "onResponse: "+ response.body().getPath());
+//                            Toast.makeText(EditUserProfileActivity.this, response.body().getPath(), Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Toast.makeText(EditUserProfileActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<EditProfileResponse> call, Throwable t) {
+
+                    Toast.makeText(EditUserProfileActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+    }
+
+    private void GetData() {
+        email = RequestBody.create(MediaType.parse("text/plain"), binding.editEmailAddress.getText().toString());
+        user_id = RequestBody.create(MediaType.parse("text/plain"), userid);
+        name = RequestBody.create(MediaType.parse("text/plain"), binding.editusername.getText().toString());
     }
 
     private void openImageSelector() {
@@ -88,6 +129,12 @@ public class EditUserProfileActivity extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                 binding.profileImage.setImageBitmap(bitmap);
+
+                    File file = uriToFile(imageUri);
+                    RequestBody reqFile = RequestBody.create(MediaType.parse("*/*"), file);
+                    image = MultipartBody.Part.createFormData("image", file.getName(), reqFile);
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -104,6 +151,20 @@ public class EditUserProfileActivity extends AppCompatActivity {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private File uriToFile(Uri uri) {
+        File file = null;
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String filePath = cursor.getString(columnIndex);
+            cursor.close();
+            file = new File(filePath);
+        }
+        return file;
     }
 
 }

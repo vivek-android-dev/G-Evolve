@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.g_evolve.databinding.AdminDashboardBinding;
+import com.example.g_evolve.databinding.ActivityAdminDashboardBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class AdminDashboardActivity extends AppCompatActivity {
 
-    AdminDashboardBinding binding;
+    ActivityAdminDashboardBinding binding;
     ViewPagerAdapter adapter;
     TabLayout tabLayout;
     ViewPager2 viewPager;
@@ -23,13 +23,14 @@ public class AdminDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = AdminDashboardBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         adapter = new ViewPagerAdapter(this);
         binding.viewPager2.setAdapter(adapter);
         tabLayout = binding.adminTabLay;
         viewPager = binding.viewPager2;
+        viewPager.setUserInputEnabled(false);
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             switch (position) {

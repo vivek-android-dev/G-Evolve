@@ -59,7 +59,7 @@
             android:name=".LocationRecyclerviewCellActivity"
             android:exported="false" />
         <activity
-            android:name=".UserDashboardActivity"
+            android:name=".DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".AddRecyclerActivity"
@@ -110,7 +110,7 @@
             android:name=".SmartphoneRecyclingActivity"
             android:exported="false" />
         <activity
-            android:name=".HomepageActivity"
+            android:name=".UserDashboardActivity"
             android:exported="false" />
         <activity
             android:name=".CreateAccountActivity"

@@ -57,7 +57,6 @@ public class SettingsFragment extends Fragment {
                         if(response.body().getStatus() == 200){
                             Glide.with(requireContext())
                                     .load(BASE_URL+response.body().getData().getImage())
-                                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(200)))
                                     .placeholder(R.drawable.circle)
                                     .into(img);
                         }
