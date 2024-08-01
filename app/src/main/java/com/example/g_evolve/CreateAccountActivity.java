@@ -57,10 +57,13 @@ public class CreateAccountActivity extends AppCompatActivity {
 
                         if(response.isSuccessful()){
                             if(response.body().getStatus().equals("200")){
-
-                                Toast.makeText(CreateAccountActivity.this, "Account created", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(CreateAccountActivity.this, LoginPageActivity.class);
-                                startActivity(intent);
+                                if(response.body().getMessage().equals("Account created")) {
+                                    Toast.makeText(CreateAccountActivity.this, "Account created", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(CreateAccountActivity.this, LoginPageActivity.class);
+                                    startActivity(intent);
+                                }
+                            } if (response.body().getStatus().equals("400")){
+                                Toast.makeText(CreateAccountActivity.this, " "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

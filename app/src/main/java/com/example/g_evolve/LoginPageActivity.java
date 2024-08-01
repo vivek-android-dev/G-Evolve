@@ -54,8 +54,8 @@ public class LoginPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(LoginPageActivity.this, HomepageActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(LoginPageActivity.this, HomepageActivity.class);
+//                startActivity(intent);
                 GetText();
                 if(validation())
                 {
@@ -84,6 +84,9 @@ public class LoginPageActivity extends AppCompatActivity {
                                             Toast.makeText(LoginPageActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(LoginPageActivity.this, HomepageActivity.class);
                                             startActivity(intent);
+                                        }
+                                        if (response.body().getStatus().equals("400")) {
+                                            Toast.makeText(LoginPageActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                         }
 
 

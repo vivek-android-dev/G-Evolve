@@ -57,7 +57,7 @@
         android:background="@color/grey"
         android:ems="10"
         android:hint="Email Address"
-        android:inputType="textPassword"
+        android:inputType="textEmailAddress"
         android:paddingStart="15dp"
         android:textColorHint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
