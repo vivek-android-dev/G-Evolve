@@ -22,22 +22,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout2"
-        android:layout_width="320dp"
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabBackground="@drawable/tab_bg"
         android:layout_marginTop="30dp"
+        android:background="@color/white"
+        app:tabGravity="fill"
+        app:tabIndicator="@color/green"
+        android:layout_marginHorizontal="20dp"
+        app:tabMode="fixed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView55"
-        app:tabRippleColor="@color/green"
+        app:tabRippleColor="@color/white"
         app:tabSelectedTextColor="@color/green">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/recycler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Recycler" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/educationTb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Education" />
@@ -45,13 +53,15 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="735dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
