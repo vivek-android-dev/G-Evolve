@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class GetProfileResponse {
     public int status;
+    public String message;
     public Data data;
 
     public int getStatus() {
@@ -12,6 +13,10 @@ public class GetProfileResponse {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public Data getData() {

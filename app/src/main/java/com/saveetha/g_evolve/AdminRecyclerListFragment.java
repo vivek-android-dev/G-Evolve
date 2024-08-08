@@ -69,6 +69,7 @@ public class AdminRecyclerListFragment extends Fragment {
 
                         recyclerList = new ArrayList<>();
                         for (int i = 0; i < response.body().getRecycler().size(); i++) {
+                            String recycler_id = String.valueOf(response.body().getRecycler().get(i).getRecycler_id());
                             String companyName = response.body().getRecycler().get(i).getCompany_name();
                             String email = response.body().getRecycler().get(i).getEmail();
                             String address = response.body().getRecycler().get(i).getAddress();
@@ -76,13 +77,15 @@ public class AdminRecyclerListFragment extends Fragment {
                             String time = response.body().getRecycler().get(i).getOpen_time() + " - " + response.body().getRecycler().get(i).getClose_time();
                             String location = response.body().getRecycler().get(i).getAddress();
 
-                            recyclerList.add(new RecyclerListModule(companyName, email, contact, address, time, location));
+                            recyclerList.add(new RecyclerListModule(recycler_id,companyName, email, contact, address, time, location));
                         }
 
 
                         adapter = new RecyclerListAdapter(recyclerList, getContext());
                         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                         binding.recyclerView.setAdapter(adapter);
+                    }else if(response.body().getMessage() != null){
+                        Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

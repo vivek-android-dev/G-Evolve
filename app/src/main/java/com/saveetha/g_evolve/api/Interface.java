@@ -44,11 +44,21 @@ public interface Interface {
     @GET("/api/showAllRecycler")
     Call<ShowAllRecyclerResponse> showAllRecycler();
 
+
+
     @FormUrlEncoded
     @POST("/api/addRecycler")
-    Call<ShowAllRecyclerResponse> addRecycler(@Field("company_name") String company_name, @Field("capacity") String capacity, @Field("address") String address, @Field("email") String email, @Field("contact") String contact, @Field("open_time") String open_time, @Field("close_time") String close_time, @Field("latitude") String latitude, @Field("longitude") String longitude);
+    Call<ShowAllRecyclerResponse> addRecycler(@Field("company_name") String company_name, @Field("capacity") String capacity,
+                                              @Field("address") String address, @Field("email") String email,
+                                              @Field("contact") String contact, @Field("open_time") String open_time,
+                                              @Field("close_time") String close_time, @Field("latitude") String latitude,
+                                              @Field("longitude") String longitude);
 
     @FormUrlEncoded
     @POST("/api/editRecycler")
-    Call<ShowAllRecyclerResponse> editRecycler(@Field("company_name") String company_name, @Field("capacity") String capacity, @Field("address") String address, @Field("email") String email, @Field("contact") String contact, @Field("open_time") String open_time, @Field("close_time") String close_time, @Field("latitude") String latitude, @Field("longitude") String longitude);
+    Call<ShowAllRecyclerResponse> editRecycler(@Field("company_name") String company_name,
+                                               @Field("capacity") String capacity, @Field("address") String address,
+                                               @Field("email") String email, @Field("contact") String contact,
+                                               @Field("open_time") String open_time, @Field("close_time") String close_time,
+                                               @Field("latitude") String latitude, @Field("longitude") String longitude);
 }

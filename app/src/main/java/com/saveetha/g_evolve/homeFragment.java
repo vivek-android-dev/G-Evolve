@@ -44,25 +44,25 @@ public class homeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.home_fragment, container, false);
-
-        Button button = view.findViewById(R.id.button3);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Switch to the second tab
-                ViewPager2 viewPager = getActivity().findViewById(R.id.homepageView);
-                viewPager.setCurrentItem(2); // Index of the tab to switch to
-            }
-        });
-        Button button4 = view.findViewById(R.id.button4);
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Switch to the second tab
-                ViewPager2 viewPager = getActivity().findViewById(R.id.homepageView);
-                viewPager.setCurrentItem(1); // Index of the tab to switch to
-            }
-        });
+//
+//        Button button = view.findViewById(R.id.button3);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Switch to the second tab
+//                ViewPager2 viewPager = getActivity().findViewById(R.id.fragmentContainer);
+//                viewPager.setCurrentItem(2); // Index of the tab to switch to
+//            }
+//        });
+//        Button button4 = view.findViewById(R.id.button4);
+//        button4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Switch to the second tab
+//                ViewPager2 viewPager = getActivity().findViewById(R.id.homepageView);
+//                viewPager.setCurrentItem(1); // Index of the tab to switch to
+//            }
+//        });
 
         return view;
     }

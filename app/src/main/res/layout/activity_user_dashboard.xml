@@ -8,24 +8,24 @@
     android:background="@color/white"
     tools:context=".UserDashboardActivity">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/homepageView"
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/homepage_tab"
+        app:layout_constraintBottom_toTopOf="@id/userTab"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/homepage_tab"
+        android:id="@+id/userTab"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homepageView"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainer"
         app:tabBackground="@color/transparent"
         app:tabGravity="fill"
         app:tabIconTint="@color/green"
@@ -35,7 +35,7 @@
         app:tabTextColor="@color/black">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/home_switcher"
+            android:id="@+id/homeSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/home"
@@ -44,38 +44,32 @@
             tools:layout_editor_absoluteY="783dp" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/location_switcher"
+            android:id="@+id/locationSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/location"
             android:text="Location" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/recycler_switcher"
+            android:id="@+id/recyclerSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/recycle_icon"
-            android:text="Recycle"
-            tools:layout_editor_absoluteX="274dp"
-            tools:layout_editor_absoluteY="806dp" />
+            android:text="Recycle" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/edu_switcher"
+            android:id="@+id/educationTb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/book_icon"
-            android:text="Edu"
-            tools:layout_editor_absoluteX="274dp"
-            tools:layout_editor_absoluteY="806dp" />
+            android:text="Edu" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/settings_switcher"
+            android:id="@+id/settingsSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/settings_icon"
-            android:text="Settings"
-            tools:layout_editor_absoluteX="274dp"
-            tools:layout_editor_absoluteY="806dp" />
+            android:text="Settings" />
     </com.google.android.material.tabs.TabLayout>
 
 

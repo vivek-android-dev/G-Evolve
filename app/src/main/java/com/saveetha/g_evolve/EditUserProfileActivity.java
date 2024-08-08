@@ -97,8 +97,8 @@ public class EditUserProfileActivity extends AppCompatActivity {
                             Log.d("Response Image", "onResponse: "+ response.body().getPath());
 //                            Toast.makeText(EditUserProfileActivity.this, response.body().getPath(), Toast.LENGTH_SHORT).show();
                             finish();
-                        } else {
-                            Toast.makeText(EditUserProfileActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        } else if(response.body().getMessage() != null){
+                            Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

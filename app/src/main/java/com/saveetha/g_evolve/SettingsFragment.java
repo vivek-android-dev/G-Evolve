@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.saveetha.g_evolve.api.RetroClient;
+import com.saveetha.g_evolve.databinding.SettingsFragmentBinding;
 import com.saveetha.g_evolve.responses.GetProfileResponse;
 import com.google.android.material.imageview.ShapeableImageView;
 
@@ -39,12 +40,16 @@ public class SettingsFragment extends Fragment {
     FragmentActivity activity;
     Context context;
 
+    SettingsFragmentBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.settings_fragment, container, false);
 
+
+        binding = SettingsFragmentBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
         // Inflate the layout for this fragment
         SharedPreferences sf = requireActivity().getSharedPreferences("usersf", MODE_PRIVATE);
@@ -55,6 +60,14 @@ public class SettingsFragment extends Fragment {
 
         if (adminid != null) {
             showProfile(adminid);
+            binding.textView25.setText("Admin Profile");
+            binding.Settings.setVisibility(View.GONE);
+            binding.aboutCV.setVisibility(View.GONE);
+            binding.privacyCV.setVisibility(View.GONE);
+            binding.termsCV.setVisibility(View.GONE);
+            binding.contactCV.setVisibility(View.GONE);
+            binding.historyCV.setVisibility(View.GONE);
+
         } else if (userid != null) {
             showProfile(userid);
         }
@@ -70,65 +83,50 @@ public class SettingsFragment extends Fragment {
         img = view.findViewById(R.id.profileImage);
 
 
-        ImageButton button = view.findViewById(R.id.imageButton4);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the activity that hosts the RecycleCenterFragment
-                Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-                startActivity(intent);
-            }
+
+        binding.profileCV.setOnClickListener(v -> {
+            // Start the activity that hosts the RecycleCenterFragment
+            Intent intent = new Intent(getActivity(), UserProfileActivity.class);
+            startActivity(intent);
         });
-        View view1 = view.findViewById(R.id.view);
-        view1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the activity that hosts the RecycleCenterFragment
-                Intent intent = new Intent(getActivity(), AboutAppActivity.class);
-                startActivity(intent);
-            }
+        binding.aboutCV.setOnClickListener(v -> {
+            // Start the activity that hosts the RecycleCenterFragment
+            binding.aboutCV.setCardElevation(20);
+            Intent intent = new Intent(getActivity(), AboutAppActivity.class);
+            startActivity(intent);
         });
-        View view2 = view.findViewById(R.id.view2);
-        view2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the activity that hosts the RecycleCenterFragment
-                Intent intent = new Intent(getActivity(), PrivacyActivity.class);
-                startActivity(intent);
-            }
+        binding.privacyCV.setOnClickListener(v -> {
+            // Start the activity that hosts the RecycleCenterFragment
+            binding.privacyCV.setCardElevation(20);
+            Intent intent = new Intent(getActivity(), PrivacyActivity.class);
+            startActivity(intent);
         });
-        View view3 = view.findViewById(R.id.view3);
-        view3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the activity that hosts the RecycleCenterFragment
-                Intent intent = new Intent(getActivity(), TermsOfServicesActivity.class);
-                startActivity(intent);
-            }
+        binding.termsCV.setOnClickListener(v -> {
+            // Start the activity that hosts the RecycleCenterFragment
+            binding.termsCV.setCardElevation(20);
+            Intent intent = new Intent(getActivity(), TermsOfServicesActivity.class);
+            startActivity(intent);
         });
-        View view4 = view.findViewById(R.id.view4);
-        view4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the activity that hosts the RecycleCenterFragment
-                Intent intent = new Intent(getActivity(), ContactUsActivity.class);
-                startActivity(intent);
-            }
+
+        binding.contactCV.setOnClickListener(v -> {
+            // Start the activity that hosts the RecycleCenterFragment
+            binding.contactCV.setCardElevation(20);
+            Intent intent = new Intent(getActivity(), ContactUsActivity.class);
+            startActivity(intent);
         });
-        View view5 = view.findViewById(R.id.view5);
-        view5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the activity that hosts the RecycleCenterFragment
-                Intent intent = new Intent(getActivity(), HistoryActivity.class);
-                startActivity(intent);
-            }
+
+        binding.historyCV.setOnClickListener(v -> {
+            // Start the activity that hosts the RecycleCenterFragment
+            binding.historyCV.setCardElevation(20);
+            Intent intent = new Intent(getActivity(), HistoryActivity.class);
+            startActivity(intent);
         });
-        Button button9 = view.findViewById(R.id.button9);
-        button9.setOnClickListener(new View.OnClickListener() {
+
+        binding.signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                binding.signOutBtn.setElevation(20);
                 SharedPreferences sf = requireActivity().getSharedPreferences("signsf", MODE_PRIVATE);
                 sf.edit().putString("issignedin", null).commit();
 
@@ -141,6 +139,7 @@ public class SettingsFragment extends Fragment {
                 // Start the activity that hosts the RecycleCenterFragment
                 Intent intent = new Intent(getActivity(), LoginPageActivity.class);
                 startActivity(intent);
+                requireActivity().finish();
             }
         });
 
@@ -163,6 +162,8 @@ public class SettingsFragment extends Fragment {
                                     .load(BASE_URL + response.body().getData().getImage())
                                     .placeholder(R.drawable.circle)
                                     .into(img);
+                        }else if(response.body().getMessage() != null){
+                            Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -173,5 +174,18 @@ public class SettingsFragment extends Fragment {
                 }
             });
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        binding.aboutCV.setCardElevation(4);
+        binding.privacyCV.setCardElevation(4);
+        binding.termsCV.setCardElevation(4);
+        binding.contactCV.setCardElevation(4);
+        binding.historyCV.setCardElevation(4);
+        binding.signOutBtn.setElevation(4);
+
     }
 }

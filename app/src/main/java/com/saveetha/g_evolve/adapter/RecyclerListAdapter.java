@@ -1,10 +1,12 @@
 package com.saveetha.g_evolve.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +46,25 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         holder.textView4.setText(item.getTime());
         holder.textView5.setText(item.getLocation());
         holder.textView6.setText(item.getContact());
+        holder.editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences sf = context.getSharedPreferences("recyclersf", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sf.edit();
+                editor.putString("recycler_id", item.getRecycler_id());
+                editor.putString("companyName", item.getCompanyName());
+                editor.putString("email", item.getEmail());
+                editor.putString("address", item.getAddress());
+                editor.putString("contact", item.getContact());
+                editor.putString("time", item.getTime());
+                editor.putString("location", item.getLocation());
+                editor.apply();
+
+//                Toast.makeText(context, "Recycler Id: " + item.getRecycler_id(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
     }
@@ -55,6 +76,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textView1, textView2, textView3, textView4, textView5, textView6;
+        Button editBtn, deactivateBtn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +86,8 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
             textView4 = itemView.findViewById(R.id.timeTV);
             textView5 = itemView.findViewById(R.id.locationTV);
             textView6 = itemView.findViewById(R.id.contactTV);
+            editBtn = itemView.findViewById(R.id.editBtn);
+//            deactivateBtn = itemView.findViewById(R.id.deactivateBtn);
 
         }
     }

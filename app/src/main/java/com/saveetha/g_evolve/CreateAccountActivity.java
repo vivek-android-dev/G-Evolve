@@ -61,8 +61,10 @@ public class CreateAccountActivity extends AppCompatActivity {
                                     Intent intent = new Intent(CreateAccountActivity.this, LoginPageActivity.class);
                                     startActivity(intent);
                                 }
-                            } if (response.body().getStatus().equals("400")){
+                            } else if (response.body().getStatus().equals("400")){
                                 Toast.makeText(CreateAccountActivity.this, " "+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            }else if(response.body().getMessage() != null){
+                                Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

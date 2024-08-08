@@ -98,6 +98,7 @@ public class LoginPageActivity extends AppCompatActivity {
                                             Toast.makeText(LoginPageActivity.this, "Admin Login successfull ", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(LoginPageActivity.this, AdminDashboardActivity.class);
                                             startActivity(intent);
+                                            finish();
                                         }
                                         if (response.body().getData().getUser_type().equals("User")) {
                                             SharedPreferences sf = getSharedPreferences("usersf", MODE_PRIVATE);
@@ -109,6 +110,7 @@ public class LoginPageActivity extends AppCompatActivity {
                                             Toast.makeText(LoginPageActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(LoginPageActivity.this, UserDashboardActivity.class);
                                             startActivity(intent);
+                                            finish();
                                         }
                                         if (response.body().getStatus() != null) {
                                             Toast.makeText(LoginPageActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -119,6 +121,8 @@ public class LoginPageActivity extends AppCompatActivity {
                                 } else if (response.body().getStatus().equals("400")) {
                                     Toast.makeText(LoginPageActivity.this, "Wrong Crenditials or User not found", Toast.LENGTH_SHORT).show();
 
+                                } else if(response.body().getMessage() != null){
+                                    Toast.makeText(LoginPageActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                             ;

@@ -78,6 +78,8 @@ public class UserProfileActivity extends AppCompatActivity {
                                     .into(binding.profileImage);
                             binding.editusername.setText(response.body().getData().getName());
                             binding.editEmailAddress.setText(response.body().getData().getEmail());
+                        }else if(response.body().getMessage() != null){
+                            Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
