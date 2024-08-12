@@ -17,6 +17,7 @@ import com.saveetha.g_evolve.api.RetroClient;
 import com.saveetha.g_evolve.databinding.FragmentAdminRecyclerListBinding;
 import com.saveetha.g_evolve.modules.RecyclerListModule;
 import com.saveetha.g_evolve.responses.ShowAllRecyclerResponse;
+import com.saveetha.g_evolve.utils.LastItemBottomMarginDecoration;
 
 import java.util.ArrayList;
 
@@ -71,19 +72,27 @@ public class AdminRecyclerListFragment extends Fragment {
                         for (int i = 0; i < response.body().getRecycler().size(); i++) {
                             String recycler_id = String.valueOf(response.body().getRecycler().get(i).getRecycler_id());
                             String companyName = response.body().getRecycler().get(i).getCompany_name();
+                            String capacity = response.body().getRecycler().get(i).getCapacity();
                             String email = response.body().getRecycler().get(i).getEmail();
                             String address = response.body().getRecycler().get(i).getAddress();
                             String contact = response.body().getRecycler().get(i).getContact();
                             String time = response.body().getRecycler().get(i).getOpen_time() + " - " + response.body().getRecycler().get(i).getClose_time();
                             String location = response.body().getRecycler().get(i).getAddress();
+                            String latitude = response.body().getRecycler().get(i).getLatitude();
+                            String longitude = response.body().getRecycler().get(i).getLongitude();
+                            String open_time = response.body().getRecycler().get(i).getOpen_time();
+                            String close_time = response.body().getRecycler().get(i).getClose_time();
 
-                            recyclerList.add(new RecyclerListModule(recycler_id,companyName, email, contact, address, time, location));
+                            recyclerList.add(new RecyclerListModule(recycler_id,companyName, capacity,email, contact, address, time, location, open_time, close_time, latitude, longitude));
                         }
 
 
                         adapter = new RecyclerListAdapter(recyclerList, getContext());
                         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        int bottomMargin = getResources().getDimensionPixelSize(R.dimen.bottom_margin); // Define your margin in dimens.xml
+                        binding.recyclerView.addItemDecoration(new LastItemBottomMarginDecoration(bottomMargin));
                         binding.recyclerView.setAdapter(adapter);
+
                     }else if(response.body().getMessage() != null){
                         Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -97,4 +106,11 @@ public class AdminRecyclerListFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        showAllRecycler();
+    }
+
 }

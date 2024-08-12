@@ -25,6 +25,7 @@ import retrofit2.Response;
 public class UserProfileActivity extends AppCompatActivity {
 
     ActivityUserProfileBinding binding;
+    String userid,adminid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,10 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         SharedPreferences sf = getSharedPreferences("usersf",MODE_PRIVATE);
-        String userid = sf.getString("userid",null);
+        userid= sf.getString("userid",null);
 
         SharedPreferences adminsf = getSharedPreferences("adminsf",MODE_PRIVATE);
-        String adminid = adminsf.getString("userid",null);
+        adminid = adminsf.getString("userid",null);
 
         if(adminid != null){
             showProfile(adminid);
@@ -93,4 +94,14 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(adminid != null){
+            showProfile(adminid);
+        } else if(userid != null){
+            showProfile(userid);
+        }
+    }
 }

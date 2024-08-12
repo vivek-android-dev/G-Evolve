@@ -1,19 +1,19 @@
 package com.saveetha.g_evolve.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.saveetha.g_evolve.R;
+import com.saveetha.g_evolve.admin.EditRecyclerActivity;
 import com.saveetha.g_evolve.modules.RecyclerListModule;
 
 import java.util.List;
@@ -55,17 +55,22 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
                 editor.putString("recycler_id", item.getRecycler_id());
                 editor.putString("companyName", item.getCompanyName());
                 editor.putString("email", item.getEmail());
+                editor.putString("capacity", item.getCapacity());
                 editor.putString("address", item.getAddress());
                 editor.putString("contact", item.getContact());
                 editor.putString("time", item.getTime());
                 editor.putString("location", item.getLocation());
+                editor.putString("latitude", item.getLatitude());
+                editor.putString("longitude", item.getLongitude());
+                editor.putString("open_time", item.getOpen_time());
+                editor.putString("close_time", item.getClose_time());
                 editor.apply();
 
-//                Toast.makeText(context, "Recycler Id: " + item.getRecycler_id(), Toast.LENGTH_SHORT).show();
+
+               context.startActivity(new Intent(context, EditRecyclerActivity.class));
 
             }
         });
-
 
     }
 

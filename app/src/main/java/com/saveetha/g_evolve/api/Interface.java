@@ -1,5 +1,6 @@
 package com.saveetha.g_evolve.api;
 
+import com.saveetha.g_evolve.responses.AddEducationResponse;
 import com.saveetha.g_evolve.responses.EditProfileResponse;
 import com.saveetha.g_evolve.responses.GetProfileResponse;
 import com.saveetha.g_evolve.responses.LoginResponse;
@@ -30,10 +31,6 @@ public interface Interface {
     @GET("/api/showProfile/{user_id}")
     Call<GetProfileResponse> profile(@Path("user_id") String user_id);
 
-//    @FormUrlEncoded
-//    @POST("/api/login")
-//    Call<LoginResponse> editProfile(@Multipart("user_id") Body user_id, @Field("name") String name , @Field("email") String email);
-//
 
     @Multipart
     @POST("/api/updateProfile")
@@ -56,9 +53,22 @@ public interface Interface {
 
     @FormUrlEncoded
     @POST("/api/editRecycler")
-    Call<ShowAllRecyclerResponse> editRecycler(@Field("company_name") String company_name,
+    Call<ShowAllRecyclerResponse> editRecycler(@Field("recycler_id")String recycler_id, @Field("company_name") String company_name,
                                                @Field("capacity") String capacity, @Field("address") String address,
                                                @Field("email") String email, @Field("contact") String contact,
                                                @Field("open_time") String open_time, @Field("close_time") String close_time,
                                                @Field("latitude") String latitude, @Field("longitude") String longitude);
+
+//    @FormUrlEncoded
+//    @POST("/api/deleteRecycler")
+//    Call<ShowAllRecyclerResponse> deleteRecycler(@Field("recycler_id")String recycler_id);
+
+    @Multipart
+    @POST("/api/addEducation")
+    Call<AddEducationResponse> addEducation(@Part("title") RequestBody title, @Part MultipartBody.Part image,
+                                            @Part("description") RequestBody description);
+
+    @GET("/api/showAllEducation")
+    Call<AddEducationResponse> showAllEducation();
+
 }

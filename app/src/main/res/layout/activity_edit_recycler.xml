@@ -26,19 +26,19 @@
                 android:id="@+id/backBtn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="40dp"
                 android:background="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/title"
-                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/back" />
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="Add Recycler"
+                android:text="Edit Recycler"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -58,7 +58,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
             <EditText
                 android:id="@+id/companyNameET"
@@ -275,9 +275,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/submitBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hintTV"
-                app:layout_wrapBehaviorInParent="skipped">
-
+                app:layout_constraintTop_toBottomOf="@+id/hintTV">
 
                 <fragment
                     android:id="@+id/mapFragment"

@@ -3,6 +3,7 @@ package com.saveetha.g_evolve;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,10 +15,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.gson.JsonObject;
 import com.saveetha.g_evolve.api.RetroClient;
 import com.saveetha.g_evolve.databinding.LoginPageBinding;
 import com.saveetha.g_evolve.responses.LoginResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -29,7 +35,7 @@ public class LoginPageActivity extends AppCompatActivity {
 
     LoginPageBinding binding;
     String email, password;
-
+    String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,20 +122,28 @@ public class LoginPageActivity extends AppCompatActivity {
                                             Toast.makeText(LoginPageActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                         }
 
-
                                     }
-                                } else if (response.body().getStatus().equals("400")) {
-                                    Toast.makeText(LoginPageActivity.this, "Wrong Crenditials or User not found", Toast.LENGTH_SHORT).show();
+                                } else if (response.body().getMessage() != null) {
+                                    Toast.makeText(LoginPageActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
-                                } else if(response.body().getMessage() != null){
-                                    Toast.makeText(LoginPageActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            } else if (response.errorBody() != null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(Objects.requireNonNull(response.errorBody().string()));
+                                    message = jObjError.getString("message");
+                                    Toast.makeText(LoginPageActivity.this, "" + message, Toast.LENGTH_SHORT).show();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                } catch (JSONException e) {
+                                    throw new RuntimeException(e);
                                 }
                             }
-                            ;
                         }
 
                         @Override
                         public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                            Toast.makeText(LoginPageActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     });

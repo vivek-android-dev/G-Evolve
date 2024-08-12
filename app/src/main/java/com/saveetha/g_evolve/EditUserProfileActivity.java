@@ -37,8 +37,8 @@ import retrofit2.Response;
 public class EditUserProfileActivity extends AppCompatActivity {
 
     ActivityEditUserProfileBinding binding;
-    private static final int REQUEST_CODE_SELECT_IMAGE = 1;
-    private static final int REQUEST_CODE_PERMISSION = 2;
+    static final int REQUEST_CODE_SELECT_IMAGE = 1;
+    public static final int REQUEST_CODE_PERMISSION = 2;
     String userid;
     RequestBody name, email, user_id;
     MultipartBody.Part image;

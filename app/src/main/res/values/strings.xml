@@ -23,4 +23,46 @@
     <string name="ewaste_education">E-waste, or electronic waste, encompasses discarded electronic devices that are no longer in use or wanted. From smartphones to laptops, these gadgets have become an important part of our daily lives, but also contribute significantly to the global waste problem. The rapid advancement in technology leads to decreased device lifespans, causing an unprecedented amount of e-waste. This trend poses serious environmental and health risks due to the toxic substances found in electronic devices.E-waste can release harmful toxins into the environment, contaminating soil and water sources. These toxins include lead, mercury, and cadmium, which can have detrimental effects on human health and biodiversity.</string>
     <string name="about3"><![CDATA[Approximately 24.9 Mt of e-waste was produced in Asia in 2019, followed by 13.1 Mt in America, 12 Mt in Europe, 2.9 Mt in Africa, and 0.7 Mt in Oceania. E-waste output has dramatically increased due to the technology sector’s ongoing growth, shorter product life cycles, and customer demand for newer gadgets. Several significant decisions that affect the health and welfare of our planet must be made from the time an electronic product is conceived until its eventual recycling or destruction. Understanding the e-waste lifecycle & electronic waste management will help us all fight to reduce its negative consequences and promote a circular economy that puts environmental protection and resource conservation first. The life of e-waste begins with the spread of the newest electronic devices, which entice customers with their cutting-edge features and functionalities. The pull of newer models forces the inevitable replacement of older ones as technological development accelerates. As a result, abandoned electronics start their journey as e-waste, prompting the development of strategic management solutions to address this escalating problem. Beyond just affecting individual customers, this urgent issue has enormous implications for corporations, notably in the IT industry. Computer systems, servers, and other electronic equipment frequently undergo updates due to the unrelenting pace of invention, which significantly adds to the growing electronic waste stream. As soon as the electrical gadget reaches the end of its useful life, it has to be disposed of correctly.]]></string>
     <string name="title_activity_maps">MapsActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.\n\n
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.\n\n
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.\n\n
+        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
+        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
+        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
+        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    </string>
 </resources>

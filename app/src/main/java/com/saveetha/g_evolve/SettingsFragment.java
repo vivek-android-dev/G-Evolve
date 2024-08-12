@@ -39,6 +39,7 @@ public class SettingsFragment extends Fragment {
 
     FragmentActivity activity;
     Context context;
+    String userid,adminid;
 
     SettingsFragmentBinding binding;
 
@@ -53,10 +54,10 @@ public class SettingsFragment extends Fragment {
 
         // Inflate the layout for this fragment
         SharedPreferences sf = requireActivity().getSharedPreferences("usersf", MODE_PRIVATE);
-        String userid = sf.getString("userid", null);
+         userid = sf.getString("userid", null);
 
         SharedPreferences adminsf = requireActivity().getSharedPreferences("adminsf", MODE_PRIVATE);
-        String adminid = adminsf.getString("userid", null);
+        adminid = adminsf.getString("userid", null);
 
         if (adminid != null) {
             showProfile(adminid);
@@ -179,6 +180,19 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (adminid != null) {
+            showProfile(adminid);
+            binding.textView25.setText("Admin Profile");
+            binding.Settings.setVisibility(View.GONE);
+            binding.aboutCV.setVisibility(View.GONE);
+            binding.privacyCV.setVisibility(View.GONE);
+            binding.termsCV.setVisibility(View.GONE);
+            binding.contactCV.setVisibility(View.GONE);
+            binding.historyCV.setVisibility(View.GONE);
+
+        } else if (userid != null) {
+            showProfile(userid);
+        }
 
         binding.aboutCV.setCardElevation(4);
         binding.privacyCV.setCardElevation(4);

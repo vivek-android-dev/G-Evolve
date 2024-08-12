@@ -50,7 +50,6 @@ public class AddRecyclerActivity extends AppCompatActivity implements OnMapReady
         binding = AddRecyclerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mapContainer = findViewById(R.id.mapContainer);
 
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,18 +77,30 @@ public class AddRecyclerActivity extends AppCompatActivity implements OnMapReady
         });
     }
 
+
+
     private void addRecyclerData() {
+
+        getText();
         Call<ShowAllRecyclerResponse> res = RetroClient.makeApi().addRecycler(companyName, capacity, address, email, contact, openTime, closeTime, latitude, longitude);
 
         res.enqueue(new Callback<ShowAllRecyclerResponse>() {
             @Override
             public void onResponse(Call<ShowAllRecyclerResponse> call, Response<ShowAllRecyclerResponse> response) {
                 // Handle successful response
+                if(response.isSuccessful()){
+                    if(response.body().getStatus()==200){
+                        Toast.makeText(AddRecyclerActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }else if(response.body().getMessage()!=null){
+                        Toast.makeText(AddRecyclerActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<ShowAllRecyclerResponse> call, Throwable t) {
                 // Handle failure
+                Toast.makeText(AddRecyclerActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -130,12 +141,11 @@ public class AddRecyclerActivity extends AppCompatActivity implements OnMapReady
     void getText() {
         companyName = binding.companyNameET.getText().toString();
         capacity = binding.capacityET.getText().toString();
-        address = binding.addressET.getText().toString();
+        address = binding.addressRecyclerTV.getText().toString();
         contact = binding.contactET.getText().toString();
         email = binding.emailET.getText().toString();
         openTime = binding.openTimeET.getText().toString();
         closeTime = binding.closeTimeET.getText().toString();
-        location = binding.addressRecyclerTV.getText().toString();
     }
 
     boolean validate() {
@@ -151,10 +161,7 @@ public class AddRecyclerActivity extends AppCompatActivity implements OnMapReady
             binding.capacityET.setError("Enter Capacity");
             isValid = false;
         }
-        if (address.isEmpty()) {
-            binding.addressET.setError("Enter Address");
-            isValid = false;
-        }
+
         if (contact.isEmpty()) {
             binding.contactET.setError("Enter Contact");
             isValid = false;
@@ -171,18 +178,11 @@ public class AddRecyclerActivity extends AppCompatActivity implements OnMapReady
             binding.closeTimeET.setError("Enter Close Time");
             isValid = false;
         }
-        if (latitude == null || latitude.isEmpty()) {
-            binding.addressRecyclerTV.setError("Select Location");
-            isValid = false;
-        }
         if (longitude == null || longitude.isEmpty()) {
-            binding.addressRecyclerTV.setError("Select Location");
+            Toast.makeText(this, "Choose Location", Toast.LENGTH_SHORT).show();
             isValid = false;
         }
-        if (location.isEmpty()) {
-            binding.addressRecyclerTV.setError("Select Location");
-            isValid = false;
-        }
+
 
         return isValid;
     }

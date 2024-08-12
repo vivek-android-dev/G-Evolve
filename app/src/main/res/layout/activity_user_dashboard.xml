@@ -35,7 +35,6 @@
         app:tabTextColor="@color/black">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/homeSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/home"
@@ -44,28 +43,24 @@
             tools:layout_editor_absoluteY="783dp" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/locationSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/location"
             android:text="Location" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/recyclerSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/recycle_icon"
             android:text="Recycle" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/educationTb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/book_icon"
             android:text="Edu" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/settingsSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/settings_icon"
