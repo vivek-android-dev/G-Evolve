@@ -1,4 +1,4 @@
-package com.saveetha.g_evolve;
+package com.saveetha.g_evolve.admin;
 
 import android.os.Bundle;
 
@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.saveetha.g_evolve.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class AdminHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_adminhome, container, false);
+        View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
 
 
         pieChart = view.findViewById(R.id.pieChart);

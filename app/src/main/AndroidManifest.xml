@@ -22,10 +22,6 @@
             android:name=".recycler.RecyclerLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.SampleActivity"
-            android:exported="false"
-            android:theme="@style/Theme.GEvolve" />
-        <activity
             android:name=".admin.EditRecyclerActivity"
             android:exported="false" />
         <activity
@@ -52,20 +48,9 @@
         <activity
             android:name=".PendingBookingsCellActivity"
             android:exported="false" />
-        <activity
-            android:name=".RecyclerDetailsCellActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ToprecyclersCellActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HistoryRejectedrecyclerviewCellActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HistoryAcceptedrecyclerviewCellActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HistoryPendingRecyclerviewCellActivity"
             android:exported="false" />
         <activity
             android:name=".LocationRecyclerviewCellActivity"
@@ -89,7 +74,7 @@
             android:name=".ContactUsActivity"
             android:exported="false" />
         <activity
-            android:name=".TermsOfServicesActivity"
+            android:name=".common.TermsOfServicesActivity"
             android:exported="false" />
         <activity
             android:name=".user.PrivacyActivity"

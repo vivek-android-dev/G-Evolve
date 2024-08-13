@@ -20,7 +20,6 @@ import com.bumptech.glide.Glide;
 import com.saveetha.g_evolve.ContactUsActivity;
 import com.saveetha.g_evolve.HistoryActivity;
 import com.saveetha.g_evolve.R;
-import com.saveetha.g_evolve.TermsOfServicesActivity;
 import com.saveetha.g_evolve.api.RetroClient;
 import com.saveetha.g_evolve.databinding.SettingsFragmentBinding;
 import com.saveetha.g_evolve.responses.GetProfileResponse;
