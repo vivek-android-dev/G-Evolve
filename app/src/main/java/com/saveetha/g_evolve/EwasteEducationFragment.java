@@ -10,6 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.saveetha.g_evolve.common.AboutEwaste3Activity;
+import com.saveetha.g_evolve.common.AboutEwaste4Activity;
+import com.saveetha.g_evolve.common.AboutEwaste5Activity;
+import com.saveetha.g_evolve.common.AboutEwasteActivity;
+import com.saveetha.g_evolve.common.AboutEwasteRecyclingActivity;
+
 
 public class EwasteEducationFragment extends Fragment {
 

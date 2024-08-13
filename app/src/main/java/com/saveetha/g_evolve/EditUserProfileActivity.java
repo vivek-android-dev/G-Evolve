@@ -21,7 +21,6 @@ import androidx.core.content.ContextCompat;
 
 import com.saveetha.g_evolve.api.RetroClient;
 import com.saveetha.g_evolve.databinding.ActivityEditUserProfileBinding;
-import com.saveetha.g_evolve.databinding.ActivityUserProfileBinding;
 import com.saveetha.g_evolve.responses.EditProfileResponse;
 
 import java.io.File;

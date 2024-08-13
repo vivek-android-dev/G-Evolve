@@ -5,6 +5,7 @@ import com.saveetha.g_evolve.responses.EditProfileResponse;
 import com.saveetha.g_evolve.responses.GetProfileResponse;
 import com.saveetha.g_evolve.responses.LoginResponse;
 import com.saveetha.g_evolve.responses.RegisterResponse;
+import com.saveetha.g_evolve.responses.ShowAllMessageResponse;
 import com.saveetha.g_evolve.responses.ShowAllRecyclerResponse;
 
 import okhttp3.MultipartBody;
@@ -13,12 +14,14 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface Interface {
+
 
     @FormUrlEncoded
     @POST("/api/register")
@@ -59,9 +62,6 @@ public interface Interface {
                                                @Field("open_time") String open_time, @Field("close_time") String close_time,
                                                @Field("latitude") String latitude, @Field("longitude") String longitude);
 
-//    @FormUrlEncoded
-//    @POST("/api/deleteRecycler")
-//    Call<ShowAllRecyclerResponse> deleteRecycler(@Field("recycler_id")String recycler_id);
 
     @Multipart
     @POST("/api/addEducation")
@@ -70,5 +70,36 @@ public interface Interface {
 
     @GET("/api/showAllEducation")
     Call<AddEducationResponse> showAllEducation();
+
+
+    @FormUrlEncoded
+    @POST("/api/deleteEducation")
+    Call<AddEducationResponse> deleteEducation(@Field("education_id")String education_id);
+
+    @FormUrlEncoded
+    @POST("/api/deleteRecycler")
+    Call<ShowAllRecyclerResponse> deleteRecycler(@Field("recycler_id")String recycler_id);
+
+    @FormUrlEncoded
+    @POST("/api/deleteProfile")
+    Call<EditProfileResponse> deleteProfile(@Field("user_id")String user_id);
+
+    @FormUrlEncoded
+    @POST("/api/recyclerLogin")
+    Call<LoginResponse> recyclerLogin(@Field("email")String email, @Field("contact")String contact);
+
+    @GET("api/showAllMessages")
+    Call<ShowAllMessageResponse> showAllMessages();
+
+    @FormUrlEncoded
+    @POST("/api/sendMessage")
+    Call<ShowAllMessageResponse> sendMessage(@Field("user_id")String user_id,@Field("message")String message);
+
+    @FormUrlEncoded
+    @POST("/api/deleteMessage")
+    Call<ShowAllMessageResponse> deleteMessage(@Field("query_id")String query_id);
+
+    
+
 
 }

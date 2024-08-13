@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutEwaste4Activity">
+    tools:context=".common.AboutEwaste4Activity">
 
     <ImageButton
         android:id="@+id/imageButton7"

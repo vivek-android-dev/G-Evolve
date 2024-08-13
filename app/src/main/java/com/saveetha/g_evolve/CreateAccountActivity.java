@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.saveetha.g_evolve.api.RetroClient;
+import com.saveetha.g_evolve.common.LoginPageActivity;
 import com.saveetha.g_evolve.databinding.CreateAccountBinding;
 import com.saveetha.g_evolve.responses.RegisterResponse;
 
@@ -40,6 +41,9 @@ public class CreateAccountActivity extends AppCompatActivity {
             return insets;
         });
 
+        binding.backBtn.setOnClickListener(v -> {
+            onBackPressed();
+        });
 
         Button button = findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
