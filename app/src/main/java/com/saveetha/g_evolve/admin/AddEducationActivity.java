@@ -3,6 +3,7 @@ package com.saveetha.g_evolve.admin;
 import static com.saveetha.g_evolve.EditUserProfileActivity.REQUEST_CODE_PERMISSION;
 import static com.saveetha.g_evolve.EditUserProfileActivity.REQUEST_CODE_SELECT_IMAGE;
 
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,7 +24,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.saveetha.g_evolve.api.RetroClient;
-import com.saveetha.g_evolve.databinding.AddEducationBinding;
+import com.saveetha.g_evolve.databinding.ActivityAddEducationBinding;
 import com.saveetha.g_evolve.responses.AddEducationResponse;
 
 import java.io.File;
@@ -39,7 +40,7 @@ import retrofit2.Response;
 
 public class AddEducationActivity extends AppCompatActivity {
 
-    AddEducationBinding binding;
+    ActivityAddEducationBinding binding;
 
     MultipartBody.Part image;
 
@@ -50,7 +51,7 @@ public class AddEducationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        binding = AddEducationBinding.inflate(getLayoutInflater());
+        binding = ActivityAddEducationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.backBtn.setOnClickListener(view -> {
@@ -65,12 +66,11 @@ public class AddEducationActivity extends AppCompatActivity {
             submit();
         });
 
-
-
     }
 
     private void submit() {
         if(validate()){
+
             Call<AddEducationResponse> res = RetroClient.makeApi().addEducation(title,image,description);
 
             res.enqueue(new Callback<AddEducationResponse>() {
@@ -79,13 +79,13 @@ public class AddEducationActivity extends AppCompatActivity {
 
                     if (response.isSuccessful()) {
                         if (response.body().getStatus().equals("200")) {
-                            Log.d("AddEducationResActivity", "onResponse: " +response.body().getMessage());
+                            Log.d("AddEducationResActivityResponse", "onResponse: " +response.body().getMessage());
                             Toast.makeText(AddEducationActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             finish();
                         } else if (Objects.requireNonNull(response.body().getMessage()!=null)) {
 
                             Toast.makeText(AddEducationActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.d("AddEducationResActivity", "onResponse: status something" +response.body().getMessage());
+                            Log.d("AddEducationResActivityResponse", "onResponse: status something" +response.body().getMessage());
 
 
                         }
@@ -93,7 +93,7 @@ public class AddEducationActivity extends AppCompatActivity {
 
                         try {
                             Toast.makeText(AddEducationActivity.this, ""+response.errorBody().string(), Toast.LENGTH_SHORT).show();
-                            Log.d("AddEducationResActivity", "onResponse: errorbody" +response.body().getMessage());
+                            Log.d("AddEducationResActivityResponse", "onResponse: errorbody" +response.body().getMessage());
 
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -104,7 +104,7 @@ public class AddEducationActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<AddEducationResponse> call, Throwable t) {
                     Toast.makeText(AddEducationActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.d("AddEducationResActivity", "onResponse: failure" +t.getMessage());
+                    Log.d("AddEducationResActivityResponse", "onResponse: failure" +t.getMessage());
 
                 }
             });

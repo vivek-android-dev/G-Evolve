@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.saveetha.g_evolve.CreateAccountActivity;
 import com.saveetha.g_evolve.R;
+import com.saveetha.g_evolve.recycler.RecyclerDashboardActivity;
 import com.saveetha.g_evolve.user.UserDashboardActivity;
 import com.saveetha.g_evolve.admin.AdminDashboardActivity;
 import com.saveetha.g_evolve.api.RetroClient;
@@ -60,6 +61,10 @@ public class LoginPageActivity extends AppCompatActivity {
                 startActivity(new Intent(this, AdminDashboardActivity.class));
                 finish();
 
+            }
+            if (status.equals("Recycler")) {
+                startActivity(new Intent(this, RecyclerDashboardActivity.class));
+                finish();
             }
         }
 

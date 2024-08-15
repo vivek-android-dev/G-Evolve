@@ -1,6 +1,7 @@
 package com.saveetha.g_evolve.recycler;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -66,8 +67,15 @@ public class RecyclerLoginActivity extends AppCompatActivity {
                         if (response.body().getMessage().equals("Login successfull")) {
 
                             Toast.makeText(RecyclerLoginActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences sf = getSharedPreferences("recyclersf", MODE_PRIVATE);
+                            sf.edit().putString("userid", response.body().getData().getRecycler_id()).apply();
+                            sf.edit().putString("username", response.body().getData().getCompany_name()).apply();
+
+                            SharedPreferences signsf = getSharedPreferences("signsf", MODE_PRIVATE);
+                            signsf.edit().putString("issignedin", "Recycler").apply();
+
                             startActivity(new Intent(RecyclerLoginActivity.this, RecyclerDashboardActivity.class));
-                            finish();
 
                         }
 

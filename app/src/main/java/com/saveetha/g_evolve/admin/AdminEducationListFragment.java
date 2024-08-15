@@ -64,6 +64,7 @@ public class AdminEducationListFragment extends Fragment {
                 if (response.isSuccessful()) {
                     if (response.body().getStatus().equals("200")) {
 
+
                         if (response.body().getEducation().size() != 0) {
                             educationList = new ArrayList<>();
 

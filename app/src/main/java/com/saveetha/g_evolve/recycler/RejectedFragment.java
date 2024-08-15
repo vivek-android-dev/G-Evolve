@@ -15,8 +15,9 @@ import android.widget.Toast;
 import com.saveetha.g_evolve.R;
 import com.saveetha.g_evolve.api.RetroClient;
 import com.saveetha.g_evolve.databinding.AcceptedFragmentBinding;
+import com.saveetha.g_evolve.databinding.RejectedFragmentBinding;
 import com.saveetha.g_evolve.recycler.adapter.AcceptdHistoryAdapter;
-import com.saveetha.g_evolve.recycler.adapter.PendingHistoryAdapter;
+import com.saveetha.g_evolve.recycler.adapter.RejectedHistoryAdapter;
 import com.saveetha.g_evolve.recycler.module.HistoryModule;
 import com.saveetha.g_evolve.responses.AddProductResponse;
 
@@ -28,9 +29,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class AcceptedFragment extends Fragment {
+public class RejectedFragment extends Fragment {
 
-    AcceptedFragmentBinding binding;
+    RejectedFragmentBinding binding;
     ArrayList<HistoryModule> list;
     Context context;
 
@@ -39,8 +40,9 @@ public class AcceptedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
 
-        binding = AcceptedFragmentBinding.bind(inflater.inflate(R.layout.accepted_fragment, container, false));
+        binding = RejectedFragmentBinding.bind(inflater.inflate(R.layout.rejected_fragment, container, false));
         View view = binding.getRoot();
 
         SharedPreferences SharedPreferences = getActivity().getSharedPreferences("recyclersf", Context.MODE_PRIVATE);
@@ -56,11 +58,7 @@ public class AcceptedFragment extends Fragment {
         }
 
         loadHistory();
-
-
         return view;
-
-
     }
 
     private void loadHistory() {
@@ -75,7 +73,7 @@ public class AcceptedFragment extends Fragment {
 
                         try {
                             for (int i = 0; i < response.body().getProduct().size(); i++) {
-                                if (response.body().getProduct().get(i).getStatus().equals("1")) {
+                                if (response.body().getProduct().get(i).getStatus().equals("2")) {
 
                                     String product_id, brand, model, price, date, time, location, phone, recycler, status, user_id, created_at, updated_at, user_name, user_email;
 
@@ -101,7 +99,7 @@ public class AcceptedFragment extends Fragment {
                             }
 
                             binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                            binding.recyclerView.setAdapter(new AcceptdHistoryAdapter(list, context));
+                            binding.recyclerView.setAdapter(new RejectedHistoryAdapter(list, context));
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -131,4 +129,5 @@ public class AcceptedFragment extends Fragment {
             }
         });
     }
+
 }

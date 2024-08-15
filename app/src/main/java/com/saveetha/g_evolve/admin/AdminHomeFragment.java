@@ -1,5 +1,6 @@
 package com.saveetha.g_evolve.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.saveetha.g_evolve.R;
+import com.saveetha.g_evolve.databinding.FragmentAdminHomeBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,20 +31,27 @@ public class AdminHomeFragment extends Fragment {
     private PieChart pieChart;
     private LineChart lineChart;
 
+    FragmentAdminHomeBinding binding;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
+        binding = FragmentAdminHomeBinding.bind(inflater.inflate(R.layout.fragment_admin_home, container, false));
 
 
-        pieChart = view.findViewById(R.id.pieChart);
-        lineChart = view.findViewById(R.id.lineChart);
+        pieChart = binding.pieChart;
+        lineChart = binding.lineChart;
 
         setupPieChart();
         setupLineChart();
-        return view;
+
+        binding.queriesIV.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AdminQueriesActivity.class));
+        });
+
+        return binding.getRoot();
     }
 
     private void setupPieChart() {

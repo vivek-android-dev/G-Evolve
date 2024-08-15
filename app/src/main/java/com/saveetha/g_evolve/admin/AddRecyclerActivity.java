@@ -20,7 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.saveetha.g_evolve.R;
 import com.saveetha.g_evolve.api.RetroClient;
-import com.saveetha.g_evolve.databinding.AddRecyclerBinding;
+import com.saveetha.g_evolve.databinding.ActivityAddRecyclerBinding;
 import com.saveetha.g_evolve.responses.ShowAllRecyclerResponse;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class AddRecyclerActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    AddRecyclerBinding binding;
+    ActivityAddRecyclerBinding binding;
     private GoogleMap mMap;
     String companyName, capacity, address, contact, email, openTime, closeTime, latitude, longitude, location;
 
@@ -48,7 +48,7 @@ public class AddRecyclerActivity extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        binding = AddRecyclerBinding.inflate(getLayoutInflater());
+        binding = ActivityAddRecyclerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
 
@@ -92,8 +92,16 @@ public class AddRecyclerActivity extends AppCompatActivity implements OnMapReady
                 if(response.isSuccessful()){
                     if(response.body().getStatus()==200){
                         Toast.makeText(AddRecyclerActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        finish();
                     }else if(response.body().getMessage()!=null){
                         Toast.makeText(AddRecyclerActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else if (response.errorBody() != null) {
+
+                    try {
+                        Toast.makeText(AddRecyclerActivity.this, ""+response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }

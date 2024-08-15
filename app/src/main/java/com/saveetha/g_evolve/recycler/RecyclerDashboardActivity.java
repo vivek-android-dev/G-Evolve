@@ -26,6 +26,8 @@ public class RecyclerDashboardActivity extends AppCompatActivity {
         binding = ActivityRecyclerDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        fragmentManager = getSupportFragmentManager();
+
         replaceFragment(new RecyclerHomeFragment(), false);
         setupTabLayout();
 
@@ -89,6 +91,7 @@ public class RecyclerDashboardActivity extends AppCompatActivity {
             fragmentManager.popBackStack();
         } else {
             super.onBackPressed();
+            finishAffinity();
         }
     }
 }

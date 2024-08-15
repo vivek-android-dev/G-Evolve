@@ -1,6 +1,7 @@
 package com.saveetha.g_evolve.api;
 
 import com.saveetha.g_evolve.responses.AddEducationResponse;
+import com.saveetha.g_evolve.responses.AddProductResponse;
 import com.saveetha.g_evolve.responses.EditProfileResponse;
 import com.saveetha.g_evolve.responses.GetProfileResponse;
 import com.saveetha.g_evolve.responses.LoginResponse;
@@ -99,7 +100,19 @@ public interface Interface {
     @POST("/api/deleteMessage")
     Call<ShowAllMessageResponse> deleteMessage(@Field("query_id")String query_id);
 
-    
+
+    @FormUrlEncoded
+    @POST("api/showProduct")
+    Call<AddProductResponse> showProduct(@Field("recycler")String recycler);
+
+    @FormUrlEncoded
+    @POST("api/acceptProduct")
+    Call<AddProductResponse> acceptProduct(@Field("product_id")String product_id);
+
+    @FormUrlEncoded
+    @POST("api/rejectProduct")
+    Call<AddProductResponse> rejectProduct(@Field("product_id")String product_id);
+
 
 
 }

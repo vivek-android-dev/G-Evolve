@@ -17,8 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.saveetha.g_evolve.ContactUsActivity;
-import com.saveetha.g_evolve.HistoryActivity;
+import com.saveetha.g_evolve.user.ContactUsActivity;
 import com.saveetha.g_evolve.R;
 import com.saveetha.g_evolve.api.RetroClient;
 import com.saveetha.g_evolve.databinding.SettingsFragmentBinding;
@@ -58,6 +57,9 @@ public class SettingsFragment extends Fragment {
         SharedPreferences adminsf = requireActivity().getSharedPreferences("adminsf", MODE_PRIVATE);
         adminid = adminsf.getString("userid", null);
 
+        SharedPreferences recyclersf = requireActivity().getSharedPreferences("recyclersf", MODE_PRIVATE);
+        String recyclerid = recyclersf.getString("userid", null);
+
         if (adminid != null) {
             showProfile(adminid);
             binding.textView25.setText("Admin Profile");
@@ -70,6 +72,9 @@ public class SettingsFragment extends Fragment {
 
         } else if (userid != null) {
             showProfile(userid);
+        } else if (recyclerid != null) {
+//            showProfile(recyclerid);
+            binding.historyCV.setVisibility(View.GONE);
         }
 
         try {
@@ -117,8 +122,8 @@ public class SettingsFragment extends Fragment {
         binding.historyCV.setOnClickListener(v -> {
             // Start the activity that hosts the RecycleCenterFragment
             binding.historyCV.setCardElevation(20);
-            Intent intent = new Intent(getActivity(), HistoryActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getActivity(), HistoryActivity.class);
+//            startActivity(intent);
         });
 
         binding.signOutBtn.setOnClickListener(new View.OnClickListener() {

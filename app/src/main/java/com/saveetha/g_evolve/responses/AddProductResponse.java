@@ -6,7 +6,7 @@ public class AddProductResponse {
 
     String status,message;
 
-    ArrayList<Product> product;
+    ArrayList<Products> Products;
 
     public String getStatus() {
         return status;
@@ -16,13 +16,24 @@ public class AddProductResponse {
         return message;
     }
 
-    public ArrayList<Product> getProduct() {
-        return product;
+
+    public ArrayList<Products> getProduct() {
+        return Products;
     }
 
-    private class Product {
 
-        String product_id,brand,model,price,date,time,location,phone,recycler,status,user_id,created_at,updated_at;
+    public static class Products {
+
+
+        String product_id,brand,model,price,date,time,location,phone,recycler,status,user_id,created_at,updated_at,user_name,user_email;
+
+        public String getUser_name() {
+            return user_name;
+        }
+
+        public String getUser_email() {
+            return user_email;
+        }
 
         public String getProduct_id() {
             return product_id;

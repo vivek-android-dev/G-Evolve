@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class ShowAllMessageResponse {
 
-    String status,message;
-    ArrayList<Queries> queries;
+    String status, message;
+    ArrayList<Queries> Queries;
 
     public String getStatus() {
         return status;
@@ -16,11 +16,12 @@ public class ShowAllMessageResponse {
     }
 
     public ArrayList<Queries> getQueries() {
-        return queries;
+        return Queries;
     }
 
-    private class Queries {
-        String query_id,user_id,user_name,user_email,message,date_query;
+
+    public static class Queries {
+        public String query_id, user_id, user_name, user_email, message, date_query;
 
         public String getQuery_id() {
             return query_id;

@@ -19,6 +19,9 @@
         android:theme="@style/Theme.GEvolve"
         tools:targetApi="31">
         <activity
+            android:name=".admin.AdminQueriesActivity"
+            android:exported="false" />
+        <activity
             android:name=".recycler.RecyclerLoginActivity"
             android:exported="false" />
         <activity
@@ -31,6 +34,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBDRoSPODqIx8_J4q5PLCkaXbFgBsAQHME" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".MapsActivity"
@@ -48,7 +54,6 @@
         <activity
             android:name=".PendingBookingsCellActivity"
             android:exported="false" />
-
         <activity
             android:name=".ToprecyclersCellActivity"
             android:exported="false" />
@@ -71,7 +76,7 @@
             android:name=".HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ContactUsActivity"
+            android:name=".user.ContactUsActivity"
             android:exported="false" />
         <activity
             android:name=".common.TermsOfServicesActivity"
