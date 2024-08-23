@@ -47,10 +47,7 @@ public class PendingFragment extends Fragment {
         recycler_id = SharedPreferences.getString("userid", null);
         recycler_name = SharedPreferences.getString("username", null);
 
-//        SharedPreferences SharedPreferences1 = getActivity().getSharedPreferences("historyVsf", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = SharedPreferences1.edit();
-//        editor.putString("historyType", "pendingView");
-//        editor.apply();
+//
 
         try {
             context = getContext();
@@ -76,7 +73,6 @@ public class PendingFragment extends Fragment {
                     if (response.body().getStatus().equals("200")) {
                         try {
                             list = new ArrayList<>();
-                            Log.d("pendinglist", "onResponse: " + response.body().getProduct().size());
                             for (int i = 0; i < response.body().getProduct().size(); i++) {
                                 if (response.body().getProduct().get(i).getStatus().equals("0")) {
 
@@ -100,7 +96,6 @@ public class PendingFragment extends Fragment {
 
                                     list.add(new HistoryModule(product_id, brand, model, price, date, time, location, phone, recycler, status, user_id, created_at, updated_at, user_name, user_email));
 
-//                                    Log.d("pendinglist", "onResponse: " + list.get(i).getBrand() + " " + list.get(i).getModel() + " " + list.get(i).getPrice() + " " + list.get(i).getDate() + " " + list.get(i).getTime() + list.get(i).getStatus());
 
                                 }
 
@@ -111,26 +106,22 @@ public class PendingFragment extends Fragment {
 
 
                         } catch (Exception e) {
-                            throw new RuntimeException(e);
-//                            e.printStackTrace();
-//                            Toast.makeText(context, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            Log.d("pendinglist", "onResponse: on try list" + e.getMessage());
+//                            throw new RuntimeException(e);
+                            e.printStackTrace();
+                            Toast.makeText(context, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
 
                     } else if (response.body().getMessage() != null) {
                         Toast.makeText(context, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("pendinglist", "onResponse: on else list" + response.body().getMessage());
                     }
                 } else if (response.errorBody() != null) {
 
                     try {
                         Toast.makeText(context, "" + response.errorBody().string(), Toast.LENGTH_SHORT).show();
-                        Log.d("pendinglist", "onResponse: on else if list" + response.errorBody().string());
                     } catch (IOException e) {
                         e.printStackTrace();
                         Toast.makeText(getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("pendinglist", "onResponse: on else if list catch" + e.getMessage());
 
                     }
                 }
@@ -140,9 +131,16 @@ public class PendingFragment extends Fragment {
             public void onFailure(Call<AddProductResponse> call, Throwable t) {
 
                 Toast.makeText(getContext(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("pendinglist", "onResponse: on failure list" + t.getMessage());
+
 
             }
         });
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadData();
     }
 }

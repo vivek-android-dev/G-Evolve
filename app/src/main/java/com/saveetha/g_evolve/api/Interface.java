@@ -12,6 +12,7 @@ import com.saveetha.g_evolve.responses.ShowAllRecyclerResponse;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -20,6 +21,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 
 public interface Interface {
 
@@ -38,13 +40,11 @@ public interface Interface {
 
     @Multipart
     @POST("/api/updateProfile")
-    Call<EditProfileResponse> updateProfile(@Part("user_id") RequestBody user_id, @Part MultipartBody.Part image,@Part("name") RequestBody name, @Part("email") RequestBody email);
-
+    Call<EditProfileResponse> updateProfile(@Part("user_id") RequestBody user_id, @Part MultipartBody.Part image, @Part("name") RequestBody name, @Part("email") RequestBody email);
 
 
     @GET("/api/showAllRecycler")
     Call<ShowAllRecyclerResponse> showAllRecycler();
-
 
 
     @FormUrlEncoded
@@ -57,7 +57,7 @@ public interface Interface {
 
     @FormUrlEncoded
     @POST("/api/editRecycler")
-    Call<ShowAllRecyclerResponse> editRecycler(@Field("recycler_id")String recycler_id, @Field("company_name") String company_name,
+    Call<ShowAllRecyclerResponse> editRecycler(@Field("recycler_id") String recycler_id, @Field("company_name") String company_name,
                                                @Field("capacity") String capacity, @Field("address") String address,
                                                @Field("email") String email, @Field("contact") String contact,
                                                @Field("open_time") String open_time, @Field("close_time") String close_time,
@@ -73,46 +73,52 @@ public interface Interface {
     Call<AddEducationResponse> showAllEducation();
 
 
-    @FormUrlEncoded
-    @POST("/api/deleteEducation")
-    Call<AddEducationResponse> deleteEducation(@Field("education_id")String education_id);
+//    @GET("/" + "/" + "api/deleteEducation/{education}")
+//    Call<AddEducationResponse> deleteEducation(@Path("education") String education);
 
-    @FormUrlEncoded
-    @POST("/api/deleteRecycler")
-    Call<ShowAllRecyclerResponse> deleteRecycler(@Field("recycler_id")String recycler_id);
-
-    @FormUrlEncoded
-    @POST("/api/deleteProfile")
-    Call<EditProfileResponse> deleteProfile(@Field("user_id")String user_id);
+//    @FormUrlEncoded
+//    @POST("/api/deleteRecycler")
+//    Call<ShowAllRecyclerResponse> deleteRecycler(@Field("recycler_id") String recycler_id);
+//
+//    @FormUrlEncoded
+//    @POST("/api/deleteProfile")
+//    Call<EditProfileResponse> deleteProfile(@Field("user_id") String user_id);
 
     @FormUrlEncoded
     @POST("/api/recyclerLogin")
-    Call<LoginResponse> recyclerLogin(@Field("email")String email, @Field("contact")String contact);
+    Call<LoginResponse> recyclerLogin(@Field("email") String email, @Field("contact") String contact);
 
     @GET("api/showAllMessages")
     Call<ShowAllMessageResponse> showAllMessages();
 
     @FormUrlEncoded
     @POST("/api/sendMessage")
-    Call<ShowAllMessageResponse> sendMessage(@Field("user_id")String user_id,@Field("message")String message);
+    Call<ShowAllMessageResponse> sendMessage(@Field("user_id") String user_id, @Field("message") String message);
+
+//    @FormUrlEncoded
+//    @POST("/api/deleteMessage")
+//    Call<ShowAllMessageResponse> deleteMessage(@Field("query_id") String query_id);
+
 
     @FormUrlEncoded
-    @POST("/api/deleteMessage")
-    Call<ShowAllMessageResponse> deleteMessage(@Field("query_id")String query_id);
-
-
-    @FormUrlEncoded
-    @POST("api/showProduct")
-    Call<AddProductResponse> showProduct(@Field("recycler")String recycler);
+    @POST("/api/showProduct")
+    Call<AddProductResponse> showProduct(@Field("recycler") String recycler);
 
     @FormUrlEncoded
-    @POST("api/acceptProduct")
-    Call<AddProductResponse> acceptProduct(@Field("product_id")String product_id);
+    @POST("/api/acceptProduct")
+    Call<AddProductResponse> acceptProduct(@Field("product_id") String product_id);
 
     @FormUrlEncoded
-    @POST("api/rejectProduct")
-    Call<AddProductResponse> rejectProduct(@Field("product_id")String product_id);
+    @POST("/api/rejectProduct")
+    Call<AddProductResponse> rejectProduct(@Field("product_id") String product_id);
+
+    @FormUrlEncoded
+    @POST("/api/addProduct")
+    Call<AddProductResponse> addProduct(@Field("user_id") String user_id, @Field("brand") String brand, @Field("model") String model, @Field("price") String price,
+                                        @Field("date") String date, @Field("time") String time, @Field("location") String location, @Field("phone") String phone, @Field("recycler") String recycler);
 
 
+    @DELETE
+    Call<AddEducationResponse> deleteEducation(@Url String url);
 
 }

@@ -1,5 +1,6 @@
 package com.saveetha.g_evolve.user;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -34,6 +35,9 @@ public class ContactUsActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
+        SharedPreferences usersf = getSharedPreferences("usersf", MODE_PRIVATE);
+        user_id = usersf.getString("userid",null);
+
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +60,7 @@ public class ContactUsActivity extends AppCompatActivity {
                                 if(response.body().getStatus().equals("200")){
 
                                     Toast.makeText(ContactUsActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
                                 } else if (response.body().getMessage()!=null) {
 
                                     Toast.makeText(ContactUsActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -101,6 +106,14 @@ public class ContactUsActivity extends AppCompatActivity {
         }
         if(email.isEmpty()){
             binding.emailET.setError("can't be empty");
+            isValid = false;
+        }
+        if(!email.contains("@")){
+            binding.emailET.setError("invalid email");
+            isValid = false;
+        }
+        if(!email.contains(".")){
+            binding.emailET.setError("invalid email");
             isValid = false;
         }
         if(message.isEmpty()){

@@ -7,14 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.saveetha.g_evolve.R;
+import com.saveetha.g_evolve.api.RetroClient;
 import com.saveetha.g_evolve.recycler.module.HistoryModule;
+import com.saveetha.g_evolve.responses.AddProductResponse;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PendingHistoryAdapter extends RecyclerView.Adapter<PendingHistoryAdapter.ViewHolder> {
 
@@ -58,13 +66,66 @@ public class PendingHistoryAdapter extends RecyclerView.Adapter<PendingHistoryAd
             @Override
             public void onClick(View v) {
 
+                Call<AddProductResponse> res = RetroClient.makeApi().acceptProduct(item.getProduct_id());
+
+                res.enqueue(new Callback<AddProductResponse>() {
+                    @Override
+                    public void onResponse(Call<AddProductResponse> call, Response<AddProductResponse> response) {
+                        if(response.isSuccessful()){
+                            if(response.body().getStatus().equals("200")){
+                                Toast.makeText(context, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                historyModuleArrayList.remove(position); // Remove the item from the list
+                                notifyItemRemoved(position); // Notify the adapter of item removal
+                                notifyItemRangeChanged(position, historyModuleArrayList.size());
+                            }
+                        } else if (response.errorBody() != null) {
+
+                            try {
+                                Toast.makeText(context, "" + response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AddProductResponse> call, Throwable t) {
+
+                        Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 
         holder.rejectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Call<AddProductResponse> res = RetroClient.makeApi().rejectProduct(item.getProduct_id());
+                res.enqueue(new Callback<AddProductResponse>() {
+                    @Override
+                    public void onResponse(Call<AddProductResponse> call, Response<AddProductResponse> response) {
+                        if(response.isSuccessful()){
+                            if(response.body().getStatus().equals("200")){
+                                Toast.makeText(context, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                historyModuleArrayList.remove(position); // Remove the item from the list
+                                notifyItemRemoved(position); // Notify the adapter of item removal
+                                notifyItemRangeChanged(position, historyModuleArrayList.size());
+                            }
+                        } else if (response.errorBody() != null) {
+                            try {
+                                Toast.makeText(context, "" + response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<AddProductResponse> call, Throwable t) {
+                        Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

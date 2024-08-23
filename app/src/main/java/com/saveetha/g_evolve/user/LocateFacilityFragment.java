@@ -1,6 +1,6 @@
-package com.saveetha.g_evolve.admin;
+package com.saveetha.g_evolve.user;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.saveetha.g_evolve.R;
-import com.saveetha.g_evolve.adapter.RecyclerListAdapter;
 import com.saveetha.g_evolve.api.RetroClient;
-import com.saveetha.g_evolve.databinding.FragmentAdminRecyclerListBinding;
+import com.saveetha.g_evolve.databinding.LocateFacilityBinding;
 import com.saveetha.g_evolve.modules.RecyclerListModule;
 import com.saveetha.g_evolve.responses.ShowAllRecyclerResponse;
+import com.saveetha.g_evolve.user.adapter.UserRecyclerListAdapter;
 import com.saveetha.g_evolve.utils.LastItemBottomMarginDecoration;
 
 import java.util.ArrayList;
@@ -26,32 +26,27 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class AdminRecyclerListFragment extends Fragment {
-
-    FragmentAdminRecyclerListBinding binding;
+public class LocateFacilityFragment extends Fragment  {
 
     ArrayList<RecyclerListModule> recyclerList;
-    RecyclerListAdapter adapter;
+    UserRecyclerListAdapter adapter;
+    LocateFacilityBinding binding;
+    Context context;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-        binding = FragmentAdminRecyclerListBinding.inflate(inflater, container, false);
+        binding = LocateFacilityBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        try {
+            context =getContext();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         showAllRecycler();
-
-        binding.addRecyclerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(requireContext(), AddRecyclerActivity.class));
-
-            }
-        });
 
         return view;
     }
@@ -86,15 +81,19 @@ public class AdminRecyclerListFragment extends Fragment {
                             recyclerList.add(new RecyclerListModule(recycler_id, companyName, capacity, email, contact, address, time, location, open_time, close_time, latitude, longitude));
                         }
 
+                        try {
+                            adapter = new UserRecyclerListAdapter(recyclerList, context);
+                            binding.LocationRecycler.setLayoutManager(new LinearLayoutManager(context));
+                            int bottomMargin = getResources().getDimensionPixelSize(R.dimen.bottom_margin); // Define your margin in dimens.xml
+                            binding.LocationRecycler.addItemDecoration(new LastItemBottomMarginDecoration(bottomMargin));
+                            binding.LocationRecycler.setAdapter(adapter);
 
-                        adapter = new RecyclerListAdapter(recyclerList, getContext());
-                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        int bottomMargin = getResources().getDimensionPixelSize(R.dimen.bottom_margin); // Define your margin in dimens.xml
-                        binding.recyclerView.addItemDecoration(new LastItemBottomMarginDecoration(bottomMargin));
-                        binding.recyclerView.setAdapter(adapter);
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
 
                     } else if (response.body().getMessage() != null) {
-                        Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -102,15 +101,10 @@ public class AdminRecyclerListFragment extends Fragment {
             @Override
             public void onFailure(Call<ShowAllRecyclerResponse> call, Throwable t) {
 
-                Toast.makeText(getContext(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        showAllRecycler();
-    }
 
 }

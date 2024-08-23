@@ -8,8 +8,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.tabs.TabLayout;
-import com.saveetha.g_evolve.EwasteEducationFragment;
-import com.saveetha.g_evolve.LocateFacilityFragment;
 import com.saveetha.g_evolve.R;
 import com.saveetha.g_evolve.RecycleCenterFragment;
 import com.saveetha.g_evolve.common.SettingsFragment;

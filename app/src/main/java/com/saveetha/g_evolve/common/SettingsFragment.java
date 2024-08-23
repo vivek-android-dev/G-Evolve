@@ -75,6 +75,7 @@ public class SettingsFragment extends Fragment {
         } else if (recyclerid != null) {
 //            showProfile(recyclerid);
             binding.historyCV.setVisibility(View.GONE);
+            binding.profileCV.setVisibility(View.GONE);
         }
 
         try {

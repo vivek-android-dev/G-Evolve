@@ -19,6 +19,9 @@
         android:theme="@style/Theme.GEvolve"
         tools:targetApi="31">
         <activity
+            android:name=".admin.EducationDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.AdminQueriesActivity"
             android:exported="false" />
         <activity
@@ -109,7 +112,7 @@
             android:name=".LaptopRecyclingActivity"
             android:exported="false" />
         <activity
-            android:name=".SmartphoneRecyclingActivity"
+            android:name=".AddProductRecyclingActivity"
             android:exported="false" />
         <activity
             android:name=".user.UserDashboardActivity"
