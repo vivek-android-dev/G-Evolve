@@ -67,68 +67,6 @@ public class EducationListAdapter extends RecyclerView.Adapter<EducationListAdap
                 .error(R.mipmap.no_image_error)
                 .into(holder.imageView);
 
-//        holder.editEduBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(context, "" + item.getEdu_id(), Toast.LENGTH_SHORT).show();
-//                Log.d("educationdetailsreso ", "onClick: " + item.getEdu_id());
-//
-//
-////                RetroClient.makeApi().deleteEducation(item.getEdu_id());
-//
-//
-//
-//                String url = BASE_URL + "/api/deleteEducation/" + item.getEdu_id();
-//
-//                Log.d("educationdetailsreso ", "onClick: " + url);
-//
-//                Call<AddEducationResponse> res = RetroClient.makeApi().deleteEducation(url);
-//
-//                res.enqueue(new Callback<AddEducationResponse>() {
-//                    @Override
-//                    public void onResponse(Call<AddEducationResponse> call, Response<AddEducationResponse> response) {
-//
-//                        if (response.isSuccessful()) {
-//                            if (response.body().getStatus().equals("200")) {
-//                                Toast.makeText(context, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-//                                Log.d("educationdetailsreso", "onResponse: succefully deleted " + response.body().getMessage());
-//                                educationList.remove(position);
-//                                notifyDataSetChanged();
-//
-//                            } else if (response.body().getMessage() != null) {
-//                                Toast.makeText(context, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-//                                Log.d("educationdetailsreso", "onResponse on other: " + response.body().getMessage());
-//
-//                            }
-//                        } else if (response.errorBody() != null) {
-//
-//                            try {
-//                                String error = response.errorBody().string();
-//
-//                                Toast.makeText(context, "" +error, Toast.LENGTH_SHORT).show();
-//                                Log.d("educationdetailsreso", "onResponse: error body " + error);
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                                Log.d("educationdetailsreso", "onResponse:  on exception " + e.getMessage());
-//                            }
-//
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<AddEducationResponse> call, Throwable t) {
-//                        Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-//                        Log.d("educationdetailsreso", "onFailure: " + t.getMessage());
-//
-//                    }
-//                });
-//
-//            }
-//
-//        });
-
 
         holder.readMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +83,39 @@ public class EducationListAdapter extends RecyclerView.Adapter<EducationListAdap
             }
         });
 
+        holder.editEduBtn.setOnClickListener(v -> deleteData(item.getEdu_id(),position));
+
     }
+
+    private void deleteData(String eduId, int position) {
+
+
+        Call<AddEducationResponse> res = RetroClient.makeApi().deleteEducation(eduId);
+
+        res.enqueue(new Callback<AddEducationResponse>() {
+            @Override
+            public void onResponse(Call<AddEducationResponse> call, Response<AddEducationResponse> response) {
+                if (response.isSuccessful()) {
+                    if(response.body().getStatus().equals("200")){
+                        Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                        educationList.remove(position);
+                        notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(context, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(context, response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddEducationResponse> call, Throwable t) {
+
+                Toast.makeText(context, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     @Override
     public int getItemCount() {

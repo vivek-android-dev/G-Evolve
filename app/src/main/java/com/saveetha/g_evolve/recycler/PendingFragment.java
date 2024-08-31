@@ -38,8 +38,7 @@ public class PendingFragment extends Fragment {
     ArrayList<HistoryModule> list;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = PendingFragmentBinding.bind(inflater.inflate(R.layout.pending_fragment, container, false));
 
@@ -51,7 +50,6 @@ public class PendingFragment extends Fragment {
 
         try {
             context = getContext();
-
 
 
         } catch (Exception e) {

@@ -52,7 +52,6 @@ public class AddProductRecyclingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
 
         binding = ActivityAddProductRecyclingBinding.inflate(getLayoutInflater());
 

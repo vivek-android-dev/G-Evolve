@@ -28,6 +28,7 @@ public class EducationDetailsActivity extends AppCompatActivity {
         binding = ActivityEducationDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.backBtn.setOnClickListener(v -> onBackPressed());
 
         SharedPreferences sf = getSharedPreferences("educationsf", Context.MODE_PRIVATE);
         title = sf.getString("title", null);

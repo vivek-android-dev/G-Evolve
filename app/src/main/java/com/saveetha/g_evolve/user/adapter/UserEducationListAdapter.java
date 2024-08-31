@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -19,9 +20,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.saveetha.g_evolve.R;
 import com.saveetha.g_evolve.admin.EducationDetailsActivity;
+import com.saveetha.g_evolve.api.RetroClient;
 import com.saveetha.g_evolve.modules.EducationListModule;
+import com.saveetha.g_evolve.responses.AddEducationResponse;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserEducationListAdapter extends RecyclerView.Adapter<UserEducationListAdapter.MyViewHolder> {
 
@@ -38,7 +45,7 @@ public class UserEducationListAdapter extends RecyclerView.Adapter<UserEducation
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 //        View view = ViewGroup.inflate(context, R.layout.education_details_layout, null);
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.education_details_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_education_details_layout, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -56,8 +63,6 @@ public class UserEducationListAdapter extends RecyclerView.Adapter<UserEducation
                 .error(R.mipmap.no_image_error)
                 .into(holder.imageView);
 
-//
-
         holder.readMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +77,6 @@ public class UserEducationListAdapter extends RecyclerView.Adapter<UserEducation
 
             }
         });
-
     }
 
     @Override

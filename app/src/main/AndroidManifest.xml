@@ -75,9 +75,7 @@
         <activity
             android:name=".admin.AdminDashboardActivity"
             android:exported="false" />
-        <activity
-            android:name=".HistoryActivity"
-            android:exported="false" />
+
         <activity
             android:name=".user.ContactUsActivity"
             android:exported="false" />
@@ -102,17 +100,10 @@
         <activity
             android:name=".common.UserProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".TelevisionRecyclingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AccessoriesRecyclingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LaptopRecyclingActivity"
-            android:exported="false" />
+
         <activity
             android:name=".AddProductRecyclingActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".user.UserDashboardActivity"

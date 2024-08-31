@@ -69,11 +69,10 @@ public class SettingsFragment extends Fragment {
             binding.termsCV.setVisibility(View.GONE);
             binding.contactCV.setVisibility(View.GONE);
             binding.historyCV.setVisibility(View.GONE);
-
         } else if (userid != null) {
             showProfile(userid);
+            binding.historyCV.setVisibility(View.GONE);
         } else if (recyclerid != null) {
-//            showProfile(recyclerid);
             binding.historyCV.setVisibility(View.GONE);
             binding.profileCV.setVisibility(View.GONE);
         }

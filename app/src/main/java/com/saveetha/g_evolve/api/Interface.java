@@ -118,7 +118,7 @@ public interface Interface {
                                         @Field("date") String date, @Field("time") String time, @Field("location") String location, @Field("phone") String phone, @Field("recycler") String recycler);
 
 
-    @DELETE
-    Call<AddEducationResponse> deleteEducation(@Url String url);
+    @POST("/api/deleteEduction/{education}")
+    Call<AddEducationResponse> deleteEducation(@Path("education") String education);
 
 }

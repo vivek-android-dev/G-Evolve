@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroClient {
 
-    public static final String BASE_URL = "https://fc92-110-224-82-184.ngrok-free.app";
+    public static final String BASE_URL = "https://a3c5-180-235-121-242.ngrok-free.app";
 
     private static Retrofit getRetrofit() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();

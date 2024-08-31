@@ -1,5 +1,6 @@
 package com.saveetha.g_evolve.user;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,7 @@ public class EwasteEducationFragment extends Fragment {
 
     EwasteEducationFragmentBinding binding;
     ArrayList<EducationListModule> list;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +41,13 @@ public class EwasteEducationFragment extends Fragment {
 
 
         binding = EwasteEducationFragmentBinding.inflate(inflater, container, false);
+
+        try {
+            context = getContext();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         loadEducation();
 
@@ -81,13 +90,17 @@ public class EwasteEducationFragment extends Fragment {
                         }
 
 
-                        UserEducationListAdapter adapter = new UserEducationListAdapter(list, getContext());
-                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        int bottomMargin = getResources().getDimensionPixelSize(R.dimen.bottom_margin); // Define your margin in dimens.xml
-                        binding.recyclerView.addItemDecoration(new LastItemBottomMarginDecoration(bottomMargin));
-                        binding.recyclerView.setAdapter(adapter);
+                        try {
+                            UserEducationListAdapter adapter = new UserEducationListAdapter(list, context);
+                            binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                            int bottomMargin = getResources().getDimensionPixelSize(R.dimen.bottom_margin); // Define your margin in dimens.xml
+                            binding.recyclerView.addItemDecoration(new LastItemBottomMarginDecoration(bottomMargin));
+                            binding.recyclerView.setAdapter(adapter);
 
-//                        Toast.makeText(getContext(), ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+
                     } else if (response.body().getMessage() != null) {
                         Toast.makeText(getContext(), "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }

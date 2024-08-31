@@ -2,23 +2,44 @@ package com.saveetha.g_evolve.user;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.saveetha.g_evolve.R;
+import com.saveetha.g_evolve.RecycleCenterFragment;
+import com.saveetha.g_evolve.databinding.FragmentUserHomeBinding;
 
 public class UserHomeFragment extends Fragment {
 
 
+    FragmentUserHomeBinding binding;
+    FragmentActivity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        binding = FragmentUserHomeBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+
+        try {
+            activity = getActivity();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        binding.recycleBtn.setOnClickListener(v -> {
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new RecycleCenterFragment()).commit();
+        });
+
+        binding.locateBtn.setOnClickListener(v -> {
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new LocateFacilityFragment()).commit();
+        });
+
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_user_home, container, false);
-//
 //        Button button = view.findViewById(R.id.button3);
 //        button.setOnClickListener(new View.OnClickListener() {
 //            @Override
