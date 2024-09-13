@@ -40,6 +40,7 @@ public class AddProductRecyclingActivity extends AppCompatActivity {
     private EditText editTextTime;
     private DatePickerDialog.OnDateSetListener dateSetListener;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
+    int category;
 
     ArrayList<String> list = new ArrayList<>();
     String[] stringArray;
@@ -59,6 +60,7 @@ public class AddProductRecyclingActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("selected_facility", MODE_PRIVATE);
         String facilityName = sharedPreferences.getString("facility_id", null);
+        category = Integer.parseInt(sharedPreferences.getString("facility_id", null));
 
         SharedPreferences usersf = getSharedPreferences("usersf", MODE_PRIVATE);
         userId = usersf.getString("userid", null);
@@ -124,7 +126,6 @@ public class AddProductRecyclingActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void OnSubmit() {
@@ -136,7 +137,7 @@ public class AddProductRecyclingActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (validateData()) {
-                    Call<AddProductResponse> res = RetroClient.makeApi().addProduct(user_id, brand, model, price, date, time, location, phone, recycler);
+                    Call<AddProductResponse> res = RetroClient.makeApi().addProduct(category,user_id, brand, model, price, date, time, location, phone, recycler);
 
                     res.enqueue(new Callback<AddProductResponse>() {
                         @Override

@@ -28,7 +28,6 @@ public class AdminDetailsFragment extends Fragment {
         TabLayout tabLayout = view.findViewById(R.id.tabLayout);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ViewPager2 viewPager = view.findViewById(R.id.viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(requireActivity());
-
         viewPager.setAdapter(adapter);
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {

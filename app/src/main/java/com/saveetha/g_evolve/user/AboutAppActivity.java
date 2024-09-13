@@ -1,5 +1,6 @@
 package com.saveetha.g_evolve.user;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,10 @@ public class AboutAppActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        @SuppressLint("WrongViewCast") Button back = findViewById(R.id.imageButton7);
+
+        back.setOnClickListener(v -> onBackPressed());
+
         Button button = findViewById(R.id.button13);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

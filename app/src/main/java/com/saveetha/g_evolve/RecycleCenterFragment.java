@@ -32,6 +32,7 @@ public class RecycleCenterFragment extends Fragment {
             public void onClick(View v) {
                 // Start the RecycleCenterActivity
                 sharedPreferences.edit().putString("facility_id", "Smartphone Recycling").apply();
+                sharedPreferences.edit().putString("category", "1").apply();
                 Intent intent = new Intent(getActivity(), AddProductRecyclingActivity.class);
                 startActivity(intent);
             }
@@ -43,6 +44,7 @@ public class RecycleCenterFragment extends Fragment {
                 // Start the RecycleCenterActivity
 
                 sharedPreferences.edit().putString("facility_id", "Laptop Recycling").apply();
+                sharedPreferences.edit().putString("category", "2").apply();
                 Intent intent = new Intent(getActivity(), AddProductRecyclingActivity.class);
                 startActivity(intent);
             }
@@ -53,6 +55,7 @@ public class RecycleCenterFragment extends Fragment {
             public void onClick(View v) {
                 // Start the RecycleCenterActivity
                 sharedPreferences.edit().putString("facility_id", "Accessories Recycling").apply();
+                sharedPreferences.edit().putString("category", "3").apply();
                 Intent intent = new Intent(getActivity(), AddProductRecyclingActivity.class);
                 startActivity(intent);
             }
@@ -63,6 +66,7 @@ public class RecycleCenterFragment extends Fragment {
             public void onClick(View v) {
                 // Start the RecycleCenterActivity
                 sharedPreferences.edit().putString("facility_id", "Television Recycling").apply();
+                sharedPreferences.edit().putString("category", "4").apply();
                 Intent intent = new Intent(getActivity(), AddProductRecyclingActivity.class);
                 startActivity(intent);
             }

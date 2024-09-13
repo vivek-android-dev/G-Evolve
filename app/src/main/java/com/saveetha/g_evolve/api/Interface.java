@@ -114,7 +114,7 @@ public interface Interface {
 
     @FormUrlEncoded
     @POST("/api/addProduct")
-    Call<AddProductResponse> addProduct(@Field("user_id") String user_id, @Field("brand") String brand, @Field("model") String model, @Field("price") String price,
+    Call<AddProductResponse> addProduct(@Field("category")int category,@Field("user_id") String user_id, @Field("brand") String brand, @Field("model") String model, @Field("price") String price,
                                         @Field("date") String date, @Field("time") String time, @Field("location") String location, @Field("phone") String phone, @Field("recycler") String recycler);
 
 
