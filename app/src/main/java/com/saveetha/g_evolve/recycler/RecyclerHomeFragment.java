@@ -60,14 +60,21 @@ public class RecyclerHomeFragment extends Fragment {
             e.printStackTrace();
         }
 
+        barChart = binding.barChart;
+
+
 
         SharedPreferences SharedPreferences = getActivity().getSharedPreferences("recyclersf", Context.MODE_PRIVATE);
         recycler_id = SharedPreferences.getString("userid", null);
         recycler_name = SharedPreferences.getString("username", null);
+
         LoadData();
+        loadchart();
+        // Inflate the layout for this fragment
+        return binding.getRoot();
+    }
 
-
-        barChart = binding.barChart;
+    private void loadchart() {
 
         // Create a list of BarEntry objects for each month and each category
         ArrayList<BarEntry> smartphoneEntries = new ArrayList<>();
@@ -141,10 +148,8 @@ public class RecyclerHomeFragment extends Fragment {
         legend.setDrawInside(false);
 
         barChart.animateY(1000);
-
-        // Inflate the layout for this fragment
-        return binding.getRoot();
     }
+
 
     private void LoadData() {
 

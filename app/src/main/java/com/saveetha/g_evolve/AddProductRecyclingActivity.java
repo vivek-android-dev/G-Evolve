@@ -60,7 +60,7 @@ public class AddProductRecyclingActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("selected_facility", MODE_PRIVATE);
         String facilityName = sharedPreferences.getString("facility_id", null);
-        category = Integer.parseInt(sharedPreferences.getString("facility_id", null));
+        category = sharedPreferences.getInt("category", 0);
 
         SharedPreferences usersf = getSharedPreferences("usersf", MODE_PRIVATE);
         userId = usersf.getString("userid", null);

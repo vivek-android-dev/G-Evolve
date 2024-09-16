@@ -25,7 +25,11 @@ public class AddProductResponse {
     public static class Products {
 
 
-        String product_id,brand,model,price,date,time,location,phone,recycler,status,user_id,created_at,updated_at,user_name,user_email;
+        String product_id,brand,model,price,date,time,location,phone,recycler,status,user_id,created_at,updated_at,user_name,user_email,category;
+
+        public String getCategory() {
+            return category;
+        }
 
         public String getUser_name() {
             return user_name;

@@ -12,7 +12,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/gevolvelogo"
+        android:icon="@mipmap/placeholder"
         android:label="@string/app_name"
         android:roundIcon="@color/white"
         android:supportsRtl="true"
