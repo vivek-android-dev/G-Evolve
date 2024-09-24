@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -45,6 +46,7 @@ public class AdminHomeFragment extends Fragment {
     FragmentAdminHomeBinding binding;
     ArrayList<RecyclerListModule> recyclerList;
     RecyclerListAdapter adapter;
+    FragmentActivity activity;
 
 
     @Override
@@ -53,6 +55,11 @@ public class AdminHomeFragment extends Fragment {
 
         binding = FragmentAdminHomeBinding.bind(inflater.inflate(R.layout.fragment_admin_home, container, false));
 
+        try {
+            activity = getActivity();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         pieChart = binding.pieChart;
         lineChart = binding.lineChart;
@@ -147,8 +154,8 @@ public class AdminHomeFragment extends Fragment {
                         }
 
 
-                        adapter = new RecyclerListAdapter(recyclerList, getContext());
-                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        adapter = new RecyclerListAdapter(recyclerList,activity);
+                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(activity));
                         int bottomMargin = getResources().getDimensionPixelSize(R.dimen.bottom_margin); // Define your margin in dimens.xml
                         binding.recyclerView.addItemDecoration(new LastItemBottomMarginDecoration(bottomMargin));
                         binding.recyclerView.setAdapter(adapter);

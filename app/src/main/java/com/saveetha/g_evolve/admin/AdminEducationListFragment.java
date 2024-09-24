@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ public class AdminEducationListFragment extends Fragment {
 
     FragmentAdminEducationListBinding binding;
     ArrayList<EducationListModule> educationList;
+    FragmentActivity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +41,12 @@ public class AdminEducationListFragment extends Fragment {
 
         binding = FragmentAdminEducationListBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        try {
+            activity = getActivity();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         loadAllEducation();
 
@@ -88,8 +96,8 @@ public class AdminEducationListFragment extends Fragment {
                         }
 
 
-                        EducationListAdapter adapter = new EducationListAdapter(educationList, getContext());
-                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        EducationListAdapter adapter = new EducationListAdapter(educationList, activity);
+                        binding.recyclerView.setLayoutManager(new LinearLayoutManager(activity));
                         int bottomMargin = getResources().getDimensionPixelSize(R.dimen.bottom_margin); // Define your margin in dimens.xml
                         binding.recyclerView.addItemDecoration(new LastItemBottomMarginDecoration(bottomMargin));
                         binding.recyclerView.setAdapter(adapter);
