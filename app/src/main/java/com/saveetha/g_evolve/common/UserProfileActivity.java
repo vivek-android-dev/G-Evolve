@@ -77,8 +77,8 @@ public class UserProfileActivity extends AppCompatActivity {
                             Glide.with(getApplicationContext())
                                     .load(BASE_URL+response.body().getData().getImage())
                                     .apply(RequestOptions.bitmapTransform(new RoundedCorners(20)))
-                                    .placeholder(R.mipmap.placeholder)
-                                    .error(R.mipmap.no_image_error)
+                                    .placeholder(R.drawable.recycle_icon)
+                                    .error(R.drawable.recycle_icon)
                                     .into(binding.profileImage);
                             binding.editusername.setText(response.body().getData().getName());
                             binding.editEmailAddress.setText(response.body().getData().getEmail());

@@ -59,8 +59,8 @@ public class UserEducationListAdapter extends RecyclerView.Adapter<UserEducation
 
         Glide.with(context)
                 .load(BASE_URL + item.getImage())
-                .placeholder(R.mipmap.placeholder)
-                .error(R.mipmap.no_image_error)
+                .placeholder(R.drawable.recycle_icon)
+                .error(R.drawable.recycle_icon)
                 .into(holder.imageView);
 
         holder.readMoreBtn.setOnClickListener(new View.OnClickListener() {

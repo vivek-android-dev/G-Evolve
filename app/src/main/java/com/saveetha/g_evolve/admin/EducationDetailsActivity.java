@@ -40,8 +40,8 @@ public class EducationDetailsActivity extends AppCompatActivity {
             binding.descriptionTV.setText(description);
             Glide.with(this)
                     .load(BASE_URL + image)
-                    .placeholder(R.mipmap.placeholder)
-                    .error(R.mipmap.no_image_error)
+                    .placeholder(R.drawable.recycle_icon)
+                    .error(R.drawable.recycle_icon)
                     .into(binding.thumbnailIV);
         } else {
             Toast.makeText(this, "Error Loading Details", Toast.LENGTH_SHORT).show();

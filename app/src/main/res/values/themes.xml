@@ -8,11 +8,11 @@
     <style name="Theme.GEvolve" parent="Base.Theme.GEvolve" />
 
     <style name="RoundedCornersImageView" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50dp</item> <!-- Change this value to adjust the corner radius -->
+<!--        <item name="cornerFamily">rounded</item>-->
+<!--        <item name="cornerSize">50dp</item> &lt;!&ndash; Change this value to adjust the corner radius &ndash;&gt;-->
     </style>
     <style name="RoundedCornersImageViewSetting" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">40dp</item> <!-- Change this value to adjust the corner radius -->
+<!--        <item name="cornerFamily">rounded</item>-->
+<!--        <item name="cornerSize">40dp</item> &lt;!&ndash; Change this value to adjust the corner radius &ndash;&gt;-->
     </style>
 </resources>
